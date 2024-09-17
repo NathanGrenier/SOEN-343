@@ -16,4 +16,4 @@ In order to create all UML diagrams needed for the project, plantuml (files with
 
 It's recommended to install the `jebbs.plantuml` VsCode Extension to view and edit the working plantuml files.
 
-Additionaly, reference the [docs](https://plantuml.com/) to learn how to create UML diagrams using plantuml's syntax.
+Additionally, reference the [docs](https://plantuml.com/) to learn how to create UML diagrams using plantuml's syntax.
