@@ -1,0 +1,64 @@
+@startuml Context Diagram
+left to right direction
+' The whitespace determines the size of the oval
+usecase DeliveryServiceApp [
+    
+    Delivery Service 
+    Application
+
+]
+
+card DeliveryDrivers [
+    
+    Delivery Drivers
+
+]
+
+DeliveryDrivers --> DeliveryServiceApp : Receive pick-up order, delivery, and routes
+DeliveryDrivers <-- DeliveryServiceApp : Send order delivery updates
+
+card CustomerSupportSystem [
+    
+    Customer Support System
+
+]
+
+CustomerSupportSystem -up-> DeliveryServiceApp : Provide updates to the system and customers
+CustomerSupportSystem <-up- DeliveryServiceApp : Receive shipment information and support tickets
+
+card Warehouse [
+    
+    Warehouse
+
+]
+
+Warehouse -down-> DeliveryServiceApp : Provide inventory information, package statuses
+Warehouse <-down- DeliveryServiceApp : Receive information on packages to be shipped
+
+card Merchants [
+    
+    Merchants
+
+]
+
+Merchants --> DeliveryServiceApp : Request package delivery and provide package details
+Merchants <-- DeliveryServiceApp : Provide service details (pricing, estimated delivery time)
+
+card Customer [
+    
+    Customer
+
+]
+
+Customer -up-> DeliveryServiceApp : Send request for support and issue
+Customer <-up- DeliveryServiceApp : Receive package tracking information
+
+card Management [
+    
+    Management
+
+]
+
+Management <- DeliveryServiceApp : Receive sales
+
+@enduml
