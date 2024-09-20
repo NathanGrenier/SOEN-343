@@ -1,3 +1,123 @@
 @startuml Domain Model
+' skinparam style strictuml
+scale 1
+hide empty members
+
+class UserReview {
+    rating: int
+    description: string
+}
+
+class Quotation {
+    quotationID: int
+    deliveryFee: float
+    tax: float
+    totalPrice: float
+}
+
+class User {
+    userId: int
+    name: string
+    email: Email
+    phoneNumber: PhoneNumber
+    address: Address
+    passwordHash: string
+}
+
+class Administrator {}
+class Driver {}
+class Customer {}
+class Merchant {}
+
+class SupportTicket {
+    ticketId: int
+    description: string
+}
+
+class DeliveryRequest {
+    requestID: int
+    pickupLocation: Warehouse
+    dropOffLocation: Address
+    weight: float
+    date: Date
+}
+
+class DeliveryTracking {
+    status: string
+    lastUpdated: Date
+}
+
+class Communication {
+    communicationID: int
+    content: string
+    date: Date
+}
+
+class Order {
+    orderId: int
+    trackingNumber: int
+    fulfillmentStatus: string
+}
+
+class DeliveryTruck {
+    truckID: int
+    route: DeliveryRoute
+    location: Warehouse | DropoffLocation
+}
+
+class DeliveryRoute {
+    routeID: int
+    waypoints: Address[]
+}
+
+class Warehouse {
+    warehouseID: int
+    location: Address
+    inventory: Inventory[]
+}
+
+
+class Payment {
+    paymentID: int
+    orderID: int
+    amount: float
+    date: Date
+}
+
+class PaymentHandler {
+    paymentProcessor
+    PaymentGatewayAPI
+} 
+
+class DropoffLocation {
+    address: Address
+}
+
+User <|-- Administrator
+User <|-- Driver
+User <|-- Customer
+User <|-- Merchant
+
+User "1..*" - "*" UserReview
+User "1..*" - "*" SupportTicket
+User "1" -- "*" DeliveryRequest
+User "*" -- "1" DeliveryTracking
+
+DeliveryTruck "*" --o "1" Warehouse
+DeliveryTruck "1" -- "0..1" DeliveryRoute
+DeliveryTruck "*" -- "0..1" DeliveryTracking
+DeliveryTruck "1" -- "1" Driver
+
+DeliveryRoute "*" *-- "1..*" DropoffLocation
+
+PaymentHandler "1" *-- "*" Payment
+
+Order "1" - "1" Payment
+Order "1" -- "1..*" Communication
+Order "*" --- "1" DeliveryTruck 
+Order "1" -- "1" DeliveryRequest 
+
+Quotation "*" -right- "1" Merchant
+Quotation "1" -- "1" DeliveryRequest
 
 @enduml
