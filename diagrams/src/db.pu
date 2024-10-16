@@ -1,0 +1,22 @@
+@startuml db
+' hide circle
+
+skinparam linetype ortho
+
+!define PK <&key>
+!define FK <&link-intact>
+
+entity Museum {
+  PK MUS_ID: int
+  --
+}
+
+entity Departments {
+  PK DEP_ID: int
+  PK FK MUS_ID: int
+  --
+}
+
+
+Museum ||--|{ Departments: has
+@enduml
