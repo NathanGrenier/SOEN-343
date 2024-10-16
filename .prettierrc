@@ -5,12 +5,15 @@
   "semi": true,
   "singleQuote": false,
   "quoteProps": "as-needed",
-  "trailingComma": "all",
+  "trailingCommas": {
+    "array": true,
+    "object": true,
+    "function": false
+  },
   "bracketSpacing": true,
   "bracketSameLine": true,
   "arrowParens": "always",
   "proseWrap": "always",
 
-  "plugins": ["prettier-plugin-svelte", "prettier-plugin-tailwindcss"],
-  "overrides": [{ "files": "*.svelte", "options": { "parser": "svelte" } }]
+  "plugins": ["prettier-plugin-tailwindcss"]
 }
