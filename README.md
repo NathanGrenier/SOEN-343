@@ -61,4 +61,6 @@ First, make sure you have [docker](https://docs.docker.com/engine/install/) inst
 To spin **up** the dev environment, use `docker compose up`.
 To spin **down** the container, use `docker compose down`. 
 
+> If any changes were made to the app's structure (anything not in `/src`), you might need to rebuild the docker images using `docker compose up --build`. Ex: installing a new package, changing some config files, 
+
 > Using docker isn't necessary to spin up the development environment, but it is recommended (what I use). You can also use `npm run dev` in the root directory `./` of the project to start each service on your host machine.
