@@ -1,0 +1,52 @@
+### Stage 0: Development
+FROM node:16-alpine AS development
+
+WORKDIR /usr/src/server
+
+# Install curl
+RUN apk add --no-cache curl
+
+# Copy package.json and package-lock.json to WORKDIR
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy all source files to WORKDIR
+COPY . .
+
+# Expose the port for the application
+EXPOSE 3001
+
+# Command to run the application
+CMD ["npx", "nodemon", "--config", "nodemon.json"]
+
+
+### Stage 1: Build
+FROM node:16-alpine AS build
+
+WORKDIR /usr/src/server
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+RUN npm run build
+
+### Stage 2: serve
+FROM node:16-alpine AS serve
+
+WORKDIR /usr/src/server
+
+COPY --from=build /usr/src/server/dist ./dist
+
+COPY package*.json .
+
+RUN npm ci --only=production
+
+EXPOSE 3001
+
+CMD ["npm", "run", "start"]
+

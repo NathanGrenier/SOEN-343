@@ -1,0 +1,11 @@
+name: Deploy
+on:
+ push:
+   branches:
+     - 'main'
+
+permissions:
+  packages: write
+
+jobs:
+  build-and-test:
