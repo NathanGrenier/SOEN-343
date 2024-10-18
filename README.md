@@ -61,6 +61,9 @@ Generate a safe password for your database using the following command:  `openss
 First, make sure you have [docker](https://docs.docker.com/engine/install/) installed for your system.
 
 To spin **up** the dev environment, use `docker compose up`.
+
+After all of the services have started, you can access the application at `http://localhost:5173/`
+
 To spin **down** the container, use `docker compose down`. 
 
 > If any changes were made to the app's structure (anything not in `/src`), you might need to rebuild the docker images using `docker compose up --build`. Ex: installing a new package, changing some config files, 
