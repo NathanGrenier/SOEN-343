@@ -2,6 +2,7 @@
 
 ## Stack
 - **Frontend:** React
+- **Client Side Routing**: [React Router](https://reactrouter.com/en/main/start/tutorial)
 - **Backend:** Express
 - **Frontend Bundler:** Vite
 - **Language**: Typescript
@@ -41,16 +42,17 @@ Do install all dependencies in the project, use the install script `./install-al
 ### Environment Variables and Secrets
 
 Create a `.env` file and add these environment variables:
-| Name                 | Value                 |
-| -------------------- | --------------------- |
-| POSTGRES_HOST        | db                    |
-| POSTGRES_USER        | postgres              |
-| POSTGRES_DB          | app                   |
-| POSTGRES_PORT        | 5432                  |
-| POSTGRES_SSLMODE     | disable               |
-| PORT                 | 3001                  |
-| VITE_SERVER_API_PATH | /api                  |
-| VITE_SERVER_URL      | http://localhost:3001 |
+| Name             | Value                 |
+| ---------------- | --------------------- |
+| NODE_ENV         | development           |
+| POSTGRES_HOST    | db                    |
+| POSTGRES_USER    | postgres              |
+| POSTGRES_DB      | app                   |
+| POSTGRES_PORT    | 5432                  |
+| POSTGRES_SSLMODE | disable               |
+| PORT             | 3001                  |
+| API_PATH         | /api                  |
+| VITE_SERVER_URL  | http://localhost:3001 |
 
 Generate a safe password for your database using the following command:  `openssl rand -base64 32 > db/password.txt`
 

@@ -7,7 +7,7 @@ const ROOT_DIR = "./../../";
 export default defineConfig((env) => {
   const envars = loadEnv(env.mode, ROOT_DIR);
   const serverURL = new URL(envars.VITE_SERVER_URL ?? "http://localhost:3001");
-  const serverAPIPath = envars.VITE_SERVER_API_PATH ?? "/api";
+  const serverAPIPath = envars.API_PATH ?? "/api";
 
   return {
     envDir: ROOT_DIR,

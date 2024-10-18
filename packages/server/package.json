@@ -2,11 +2,11 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/main.js",
+  "main": "dist/server.js",
   "type": "module",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "start": "node ./dist/main.js",
+    "start": "node ./dist/server.js",
     "dev": "nodemon --config nodemon.json"
   },
   "author": "",
