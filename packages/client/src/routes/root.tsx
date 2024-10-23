@@ -1,4 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
+import LiveChatPopUp from "../components/LiveChatPopUp";
 
 export default function Root() {
   return (
@@ -15,6 +16,7 @@ export default function Root() {
             className="h-full px-6 py-2 text-lg font-semibold text-white hover:bg-blue-700">
             Test
           </Link>
+          <LiveChatPopUp />
         </div>
       </nav>
       <Outlet />
