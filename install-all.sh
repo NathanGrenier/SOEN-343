@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Navigate to the root directory and install npm packages
 echo "[LOG]: Installing npm packages in the root directory..."

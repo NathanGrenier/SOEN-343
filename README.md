@@ -54,7 +54,7 @@ Create a `.env` file and add these environment variables:
 | API_PATH         | /api                  |
 | VITE_SERVER_URL  | http://localhost:3001 |
 
-Generate a safe password for your database using the following command:  `openssl rand -base64 32 > db/password.txt`
+Generate a safe password for your database using the following command:  `mkdir -p db-secrets && openssl rand -base64 32 > db-secrets/password.txt`
 
 ### Using Docker Compose (Dev Environment)
 
