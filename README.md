@@ -1,5 +1,7 @@
 # About
 
+[![Deploy](https://github.com/NathanGrenier/SOEN-343/actions/workflows/deploy.yaml/badge.svg)](https://github.com/NathanGrenier/SOEN-343/actions/workflows/deploy.yaml)
+
 ## Stack
 - **Frontend:** React
 - **Client Side Routing**: [React Router](https://reactrouter.com/en/main/start/tutorial)

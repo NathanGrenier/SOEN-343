@@ -51,5 +51,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
+          file: Dockerfile.prod
           push: true
           tags: ghcr.io/nathangrenier/soen-343:latest
