@@ -31,6 +31,7 @@ export default tseslint.config(
         "warn",
         { allowConstantExport: true },
       ],
+      "constructor-super": "error",
     },
   },
 );
