@@ -25,7 +25,6 @@ services:
       - traefik-network
 
   app:
-    container_name: app
     image: ghcr.io/nathangrenier/soen-343:latest
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
