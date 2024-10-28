@@ -4,7 +4,6 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import { makeAPIPath } from "./util.js";
-import { Server } from "http";
 
 import healthRouter from "./health.js";
 import testRouter from "./routes/test.js";
