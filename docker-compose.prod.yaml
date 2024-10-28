@@ -19,7 +19,7 @@ services:
       - "traefik.http.routers.app.rule=Host(`soen343.ngrenier.com`)"
       - "traefik.http.services.app.loadbalancer.server.port=3001"
     ports:
-      - "3001:3001"
+      - "3001"
     secrets:
       - db-password
     env_file:
