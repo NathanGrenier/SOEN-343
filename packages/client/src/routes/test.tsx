@@ -10,7 +10,7 @@ export async function loader(): Promise<TestLoaderData | null> {
     const response = await fetch(`${__API_PATH__}/test`, {
       method: "GET",
     });
-    const data = await response.json();
+    const data = (await response.json()) as JSON;
     return { data };
   } catch (error) {
     console.error("Error fetching data:", error);

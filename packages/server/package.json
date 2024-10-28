@@ -7,7 +7,9 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "start": "node ./dist/server.js",
-    "dev": "nodemon --config nodemon.json"
+    "dev": "nodemon --config nodemon.json",
+    "type-check": "tsc --noEmit",
+    "test": "npm run type-check"
   },
   "author": "",
   "license": "ISC",
