@@ -1,10 +1,24 @@
 services:
+  traefik:
+    image: traefik:v2.5
+    container_name: traefik
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+
   app:
     container_name: app
-    build:
-      context: .
-      dockerfile: Dockerfile.prod
-      target: production
+    image: ghcr.io/nathangrenier/soen-343:latest
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.app.rule=Host(`soen343.ngrenier.com`)"
+      - "traefik.http.services.app.loadbalancer.server.port=3001"
     ports:
       - "3001:3001"
     secrets:
@@ -15,6 +29,10 @@ services:
       - VITE_SERVER_URL=http://app:3001
       - NODE_ENV=production
       - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
+    deploy:
+      mode: replicated
+      replicas: 3
+    restart: always
     depends_on:
       db:
         condition: service_healthy
@@ -22,7 +40,6 @@ services:
   db:
     image: postgres
     container_name: postgres
-    restart: always
     user: postgres
     secrets:
       - db-password
@@ -34,6 +51,7 @@ services:
       - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
     expose:
       - 5432
+    restart: always
     healthcheck:
       test: ["CMD", "pg_isready"]
       interval: 10s
