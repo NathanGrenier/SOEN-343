@@ -13,7 +13,6 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
   app:
-    container_name: app
     image: ghcr.io/nathangrenier/soen-343:latest
     labels:
       - "traefik.enable=true"
@@ -26,7 +25,7 @@ services:
     env_file:
       - .env
     environment:
-      - VITE_SERVER_URL=http://app:3001
+      - VITE_SERVER_URL=http://localhost:3001
       - NODE_ENV=production
       - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
     deploy:
