@@ -69,3 +69,16 @@ To spin **down** the container, use `docker compose down`.
 > If any changes were made to the app's structure (anything not in `/src`), you might need to rebuild the docker images using `docker compose up --build`. Ex: installing a new package, changing some config files, 
 
 > Using docker isn't necessary to spin up the development environment, but it is recommended (what I use). You can also use `npm run dev` in the root directory `./` of the project to start each service on your host machine.
+
+### Publishing Docker Image using Docker Compose
+First, login to docker using the following command:
+
+```sh
+docker login --username {{ USERNAME }} --password {{ GITHUB_ACCESS_TOKEN }} ghcr.io 
+```
+
+> Note, you will need to generate a new Github access token (classic) with the proper registry permissions (read, write, delete).
+
+Now, build the production Dockerfile using: `docker build -f Dockerfile.prod -t ghcr.io/nathangrenier/soen-343:latest .`
+
+To push the built image to the registry, use: `docker push ghcr.io/nathangrenier/soen-343:latest`
