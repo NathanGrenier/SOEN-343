@@ -6,6 +6,7 @@ import Root from "./routes/root.tsx";
 import ErrorPage from "./error-page.tsx";
 import Test, { loader as testLoader } from "./routes/test.tsx";
 import Quotation from "./routes/quotation.tsx";
+import Delivery from "./routes/delivery_request.tsx";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: "quotation",
         element: <Quotation />,
+      },
+      {
+        path: "delivery_request",
+        element: <Delivery />,
       },
     ],
   },

@@ -1,50 +1,42 @@
-// src/routes/quotation.tsx
 import React, { useState } from "react";
+import { ShippingCostCalculator } from "../utils/ShippingCostCalculator";
+import { insideCanadaStrategy } from "../utils/insideCanadaStrategy";
+import { outsideCanadaStrategy } from "../utils/outsideCanadaStrategy";
 
-const quotation: React.FC = () => {
+const Quotation: React.FC = () => {
   const [destination, setDestination] = useState("inside");
   const [weight, setWeight] = useState(0);
   const [isExpress, setIsExpress] = useState(false);
   const [cost, setCost] = useState<number | null>(null);
 
   const calculateShippingCost = () => {
-    let baseCost = destination === "inside" ? 0.5 : 5;
-    let weightCost = weight * 5;
-    let expressCost = isExpress ? 15 : 0;
-    const totalCost = baseCost + weightCost + expressCost;
-    setCost(totalCost);
+    const strategy = destination === "inside" ? insideCanadaStrategy : outsideCanadaStrategy;
+    const calculator = new ShippingCostCalculator(strategy);
+    setCost(calculator.calculate(weight, isExpress));
   };
 
   return (
     <div className="p-4 max-w-md mx-auto bg-white shadow-lg rounded-lg">
       <h2 className="text-2xl font-bold mb-4">Shipping Quotation</h2>
 
-    <div className="mb-6 p-4 border border-gray-200 rounded bg-blue-50">
-      <h3 className="text-xl font-semibold mb-2">Factors Influencing Shipping Cost</h3>
-      <div className="flex flex-col space-y-3 text-sm">
-        <div className="flex items-center space-x-2">
-          <span role="img" aria-label="destination" className="text-lg">
-            🌍
-          </span>
-          <span><strong>Destination:</strong> Ship within Canada for free 0.50$, or send it internationally for only 5$!</span>
-        </div>
-        <div className="flex items-center space-x-2">
-          <span role="img" aria-label="weight" className="text-lg">
-            ⚖️
-          </span>
-          <span><strong>Weight:</strong> Larger packages may need a little extra to cover the journey, but we’ve got you covered at $5/kg.</span>
-        </div>
-        <div className="flex items-center space-x-2">
-          <span role="img" aria-label="express" className="text-lg">
-            🚀
-          </span>
-          <span><strong>Express Shipping:</strong> Add an extra $15 for express delivery to ensure your package arrives on time!</span>
+      <div className="mb-6 p-4 border border-gray-200 rounded bg-blue-50">
+        <h3 className="text-xl font-semibold mb-2">Factors Influencing Shipping Cost</h3>
+        <div className="flex flex-col space-y-3 text-sm">
+          <div className="flex items-center space-x-2">
+            <span role="img" aria-label="destination" className="text-lg">🌍</span>
+            <span><strong>Destination:</strong> Ship within Canada for free 0.50$, or send it internationally for only 5$!</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <span role="img" aria-label="weight" className="text-lg">⚖️</span>
+            <span><strong>Weight:</strong> Larger packages may need a little extra to cover the journey, but we’ve got you covered at $5/kg.</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <span role="img" aria-label="express" className="text-lg">🚀</span>
+            <span><strong>Express Shipping:</strong> Add an extra $15 for express delivery to ensure your package arrives on time!</span>
+          </div>
         </div>
       </div>
-    </div>
 
-
-      {/* Form for Cost Calculation */}
       <div className="mb-4">
         <label className="block text-lg font-semibold">Destination:</label>
         <select
@@ -94,4 +86,4 @@ const quotation: React.FC = () => {
   );
 };
 
-export default quotation;
+export default Quotation;
