@@ -16,6 +16,15 @@ const quotation: React.FC = () => {
   };
 
   return (
+    <header
+        className="relative w-full h-64 bg-cover bg-center"
+        style={{ backgroundImage: "url('https://marlink.com/_Resources/Persistent/9/1/1/1/9111d28f94013d19819e6e4bafb5a7f75dbfefbf/Shipping%20hero-7112x3724-1200x628.jpeg')" }}
+      >
+        <div className="absolute inset-0 bg-black opacity-50"></div>
+        <div className="relative flex items-center justify-start h-full text-white pl-40">
+          <h1 className="text-3xl font-bold">Our Shipping Rates</h1>
+        </div>
+      </header>
     <div className="p-4 max-w-md mx-auto bg-white shadow-lg rounded-lg">
       <h2 className="text-2xl font-bold mb-4">Shipping Quotation</h2>
 
