@@ -25,7 +25,7 @@ const Navbar: React.FC<NavbarProps> = ({ navItems, logo }) => {
   };
 
   return (
-    <nav className="flex flex-wrap items-center justify-between bg-white p-4">
+    <nav className="flex flex-wrap items-center justify-between bg-white p-4 fixed top-0 z-10 w-full">
       <div className="flex items-center">
         <img src={logo} alt="Logo" className="h-10 w-auto mr-4" />
         <button

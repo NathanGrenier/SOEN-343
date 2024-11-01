@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 
 // Functional component without props
 const MainContent: React.FC = () => {
+
   return (
     <>
+    
       <div className="relative h-[400px] w-full">
         <img
-          src="../public/assets/images/main.jpg"
+          src="../assets/images/main.jpg"
           alt="Man holding package"
           className="h-[400px] w-full object-cover"
         />
@@ -37,7 +39,7 @@ const MainContent: React.FC = () => {
         <div className="bg-lightGray relative flex h-[100%] w-[30%] items-start justify-start">
           <div className="bg-mainGreen absolute inset-0 mx-auto my-auto flex h-20 w-20 -translate-y-10 transform items-center justify-center rounded-full shadow-lg" />
           <img
-            src="../public/assets/images/DeliveryTruck.png"
+            src="../assets/images/DeliveryTruck.png"
             alt="delivery truck"
             className="absolute inset-0 mx-auto my-auto h-[50%] w-[55%] object-cover"
           />
