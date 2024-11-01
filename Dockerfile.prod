@@ -50,6 +50,7 @@ WORKDIR /usr/src/server
 COPY --from=server-build /usr/src/server/dist ./dist
 
 COPY packages/server/package*.json .
+COPY migrations ./migrations
 
 RUN npm ci --only=production
 
