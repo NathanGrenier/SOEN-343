@@ -1,10 +1,12 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "../Components/Navbar";
+import MainContent from "../Components/MainContent";
+
 
 const App: React.FC = () => {
   const navItems = [
-    { name: "Home", path: "/" },
+    { name: "Home", path: "/test" },
     { name: "Shipping", path: "/" },
     { name: "Tracking", path: "/" },
     { name: "Services", path: "/" },
@@ -12,24 +14,24 @@ const App: React.FC = () => {
     { name: "About", path: "/" },
 
     //Drop down use example
-    // {
-    //   name: "Shipping",
-    //   path: "/",
-    //   dropdownItems: [
-    //     { name: "New Reservation", path: "/" },
-    //     { name: "View", path: "/" },
-    //     { name: "Modify", path: "/" },
-    //     { name: "Cancel", path: "/" },
-    //   ],
-    // },
-   
+    {
+      name: "Shipping",
+      path: "/",
+      dropdownItems: [
+        { name: "New Reservation", path: "/" },
+        { name: "View", path: "/" },
+        { name: "Modify", path: "/" },
+        { name: "Cancel", path: "/" },
+      ],
+    },
   ];
 
   return (
-    <>
+    <div>
       <Navbar navItems={navItems} logo="../public/assets/images/logo.png" />
+      
       <Outlet />
-    </>
+      </div>
   );
 };
 
