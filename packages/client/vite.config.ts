@@ -1,10 +1,10 @@
-import { defineConfig, loadEnv } from "vite";
+import { defineConfig, loadEnv, ConfigEnv } from "vite";
 import react from "@vitejs/plugin-react";
 
 const ROOT_DIR = "./../../";
 
 
-export default defineConfig((env: any) => {
+export default defineConfig((env: ConfigEnv) => {
   const envars = loadEnv(env.mode, ROOT_DIR);
   const serverURL = new URL(envars.VITE_SERVER_URL ?? "http://localhost:3001");
   const serverAPIPath = envars.API_PATH ?? "/api";
