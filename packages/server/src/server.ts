@@ -7,6 +7,9 @@ import { makeAPIPath } from "./util.js";
 
 import healthRouter from "./health.js";
 import testRouter from "./routes/test.js";
+import deliveryConfirmationRouter from "./routes/deliveryConfirmation.js"
+import deliveryShippedRouter from "./routes/deliveryShipped.js"
+import deliveryPaymentRouter from "./routes/deliveryPayment.js"
 
 const db = null; // Replace with the database singleton
 
@@ -18,6 +21,9 @@ app.use(express.urlencoded({ extended: true }));
 // app.use(makeAPIPath(""), rootRouter);
 app.use(makeAPIPath("/health"), healthRouter);
 app.use(makeAPIPath("/test"), testRouter);
+app.use(makeAPIPath("/send-delivery-confirmation"), deliveryConfirmationRouter);
+app.use(makeAPIPath("/send-delivery-shipped"), deliveryShippedRouter);
+app.use(makeAPIPath("/send-delivery-payment"), deliveryPaymentRouter);
 
 // Get the directory name using import.meta.url
 const __filename = fileURLToPath(import.meta.url);
