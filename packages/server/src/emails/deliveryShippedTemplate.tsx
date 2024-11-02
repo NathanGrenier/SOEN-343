@@ -14,10 +14,11 @@ import {
     Text,
   } from "@react-email/components";
   import * as React from "react";
+  import { DeliveryEmailProps } from "./deliveryInterface";
   
 
   
-  export const DeliveryConfirmationEmail = (delivery: any) => (
+  export const DeliveryConfirmationEmail: React.FC<DeliveryEmailProps> = ({ delivery }) => (
     <Html>
       <Head />
       <Preview>Get your order summary, estimated delivery date and more</Preview>
@@ -36,30 +37,30 @@ import {
           </Section>
           <Hr style={global.hr} />
           <Section style={message}>
-            <Img
-              src={'../assets/logo.png'}
+            {/* <Img
+              src= "./logo.png"
               width="66"
               height="22"
-              alt="Nike"
+              alt="SwiftSend"
               style={{ margin: "auto" }}
-            />
+            /> */}
             <Heading style={global.heading}>It's on it's way!</Heading>
             <Text style={global.text}>
             Good news! Your delivery has been dispatched and is currently on its way.
             </Text>
             <Text style={{ ...global.text, marginTop: 24 }}>
             You can track your order in real time by clicking the link above. 
-            For any updates or questions, feel free to contact us.
+            For any updates or questions, feel free to contact us.<br />
 
-            We appreciate your trust in our service!
+            We appreciate your trust in our service!<br /><br />
               
-            Best regards,
+            Best regards,<br />
             Swift Send Delivery Team
             </Text>
           </Section>
           <Hr style={global.hr} />
           <Section style={global.defaultPadding}>
-            <Text style={adressTitle}>Shipping to: {delivery.dropOffFirstname} {delivery.OffLastname}</Text>
+            <Text style={adressTitle}>Shipping to: {delivery.dropOffFirstname} {delivery.dropOffLastname}</Text>
             <Text style={{ ...global.text, fontSize: 14 }}>
               {delivery.dropOffAddress}
             </Text>
@@ -69,21 +70,19 @@ import {
             </Text>
           </Section>
           <Hr style={global.hr} />
-          <Section
-            style={{ ...paddingX, paddingTop: "40px", paddingBottom: "40px" }}
-          >
-            
-          </Section>
-          <Hr style={global.hr} />
           <Section style={global.defaultPadding}>
-            <Row style={{ display: "inline-flex", marginBottom: 40 }}>
+            <Row style={{ display: "inline-flex", marginBottom: 40}}>
               <Column style={{ width: "170px" }}>
                 <Text style={global.paragraphWithBold}>Tracking Number</Text>
                 <Text style={track.number}>{delivery.trackId}</Text>
               </Column>
-              <Column>
+              <Column style={{ width: "170px" }}>
                 <Text style={global.paragraphWithBold}>Order Date</Text>
                 <Text style={track.number}>{delivery.startDate}</Text>
+              </Column>
+              <Column style={{ width: "170px" }}>
+                <Text style={global.paragraphWithBold}>Estimated Delivery</Text>
+                <Text style={track.number}>{delivery.endDate}</Text>
               </Column>
             </Row>
           </Section>
@@ -115,16 +114,16 @@ import {
               <Column>
                 <Row>
                   <Column style={{ width: "16px" }}>
-                    <Img
+                    {/* <Img
                       src={'../assets/logo.png'}
                       width="16px"
                       height="26px"
                       style={{ paddingRight: "14px" }}
-                    />
+                    /> */}
                   </Column>
                   <Column>
                     <Text style={{ ...menu.text, marginBottom: "0" }}>
-                      1-800-806-6453
+                      1-800-000-0000
                     </Text>
                   </Column>
                 </Row>

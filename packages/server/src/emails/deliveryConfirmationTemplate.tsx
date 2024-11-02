@@ -14,13 +14,12 @@ import {
     Text,
   } from "@react-email/components";
   import * as React from "react";
+  import { DeliveryEmailProps } from "./deliveryInterface";
   
-
-  
-  export const PaymentEmail = (delivery: any) => (
+  export const DeliveryConfirmationEmail: React.FC<DeliveryEmailProps> = ({ delivery }) => (
     <Html>
       <Head />
-      <Preview>Payment Received for Your Delivery</Preview>
+      <Preview>Get your order summary, estimated delivery date and more</Preview>
       <Body style={main}>
         <Container style={container}>
           <Section style={track.container}>
@@ -36,31 +35,31 @@ import {
           </Section>
           <Hr style={global.hr} />
           <Section style={message}>
-            <Img
-              src={'../assets/logo.png'}
+            {/* <Img
+              src= "./logo.png"
               width="66"
               height="22"
-              alt="Nike"
+              alt="SwiftSend"
               style={{ margin: "auto" }}
-            />
-            <Heading style={global.heading}>It's on it's way!</Heading>
+            /> */}
+            <Heading style={global.heading}>Confimation</Heading>
             <Text style={global.text}>
-            We have successfully processed your payment for the delivery service.
+              You delivery request has been confimred! Use the link above to track its progress.
             </Text>
             <Text style={{ ...global.text, marginTop: 24 }}>
-            Amount Charged: {delivery.amount}
-            Payment Method: {delivery.paymentMethod}
-            Tracking NUmber: {delivery.trackId}
+              We've also charged your payment method for the cost of your order
+              and will be removing any authorization holds. For payment details,
+              please visit our 'Tracking' page.<br />
 
-            We appreciate your trust in our service!
+              We appreciate your trust in our service!<br /><br />
               
-            Best regards,
-            Swift Send Delivery Team
+              Best regards,<br />
+              Swift Send Delivery Team
             </Text>
           </Section>
           <Hr style={global.hr} />
           <Section style={global.defaultPadding}>
-            <Text style={adressTitle}>Shipping to: {delivery.dropOffFirstname} {delivery.OffLastname}</Text>
+            <Text style={adressTitle}>Shipping to: {delivery.dropOffFirstname} {delivery.dropOffLastname}</Text>
             <Text style={{ ...global.text, fontSize: 14 }}>
               {delivery.dropOffAddress}
             </Text>
@@ -70,21 +69,19 @@ import {
             </Text>
           </Section>
           <Hr style={global.hr} />
-          <Section
-            style={{ ...paddingX, paddingTop: "40px", paddingBottom: "40px" }}
-          >
-            
-          </Section>
-          <Hr style={global.hr} />
           <Section style={global.defaultPadding}>
             <Row style={{ display: "inline-flex", marginBottom: 40 }}>
               <Column style={{ width: "170px" }}>
                 <Text style={global.paragraphWithBold}>Tracking Number</Text>
                 <Text style={track.number}>{delivery.trackId}</Text>
               </Column>
-              <Column>
+              <Column style={{ width: "170px" }}>
                 <Text style={global.paragraphWithBold}>Order Date</Text>
                 <Text style={track.number}>{delivery.startDate}</Text>
+              </Column>
+              <Column style={{ width: "170px" }}>
+                <Text style={global.paragraphWithBold}>Estimated Delivery</Text>
+                <Text style={track.number}>{delivery.endDate}</Text>
               </Column>
             </Row>
           </Section>
@@ -116,16 +113,16 @@ import {
               <Column>
                 <Row>
                   <Column style={{ width: "16px" }}>
-                    <Img
-                      src={'../assets/logo.png'}
+                    {/* <Img
+                      src={'./logo.png'}
                       width="16px"
                       height="26px"
                       style={{ paddingRight: "14px" }}
-                    />
+                    /> */}
                   </Column>
                   <Column>
                     <Text style={{ ...menu.text, marginBottom: "0" }}>
-                      1-800-806-6453
+                      1-800-000-0000
                     </Text>
                   </Column>
                 </Row>
@@ -165,7 +162,7 @@ import {
     </Html>
   );
   
-  export default PaymentEmail;
+  export default DeliveryConfirmationEmail;
   
   const paddingX = {
     paddingLeft: "40px",
@@ -255,6 +252,7 @@ import {
     fontSize: "15px",
     fontWeight: "bold",
   };
+
   
   const menu = {
     container: {
@@ -286,7 +284,7 @@ import {
       paddingBottom: "22px",
     },
   };
-  
+
   
   const footer = {
     policy: {
