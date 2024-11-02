@@ -5,12 +5,13 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { makeAPIPath } from "./util.js";
 
-import rootRouter from "./routes/root.js";
 import healthRouter from "./health.js";
 import testRouter from "./routes/test.js";
 import deliveryConfirmationRouter from "./routes/deliveryConfirmation.js"
 import deliveryShippedRouter from "./routes/deliveryShipped.js"
 import deliveryPaymentRouter from "./routes/deliveryPayment.js"
+
+const db = null; // Replace with the database singleton
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -40,6 +41,35 @@ if (process.env.NODE_ENV === "production") {
   app.use(cors());
 }
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+// Graceful shutdown
+process.on("SIGTERM", gracefulShutdown);
+process.on("SIGINT", gracefulShutdown);
+
+function gracefulShutdown() {
+  console.log("Received shutdown signal, starting graceful shutdown...");
+
+  // Stop accepting new requests
+  server.close(() => {
+    console.log("Server closed, no longer accepting connections");
+
+    // Close database connections
+    if (db) {
+      console.log("Closing database connections...");
+      // Handle closing database connections
+    } else {
+      process.exit(0);
+    }
+  });
+
+  // Force shutdown if graceful shutdown fails
+  setTimeout(() => {
+    console.error(
+      "Could not close connections in time, forcefully shutting down",
+    );
+    process.exit(1);
+  }, 30000); // 30 seconds timeout
+}
