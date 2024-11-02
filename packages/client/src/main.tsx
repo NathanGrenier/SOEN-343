@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import Root from "./routes/root.tsx";
 import ErrorPage from "./error-page.tsx";
+import PaymentForm from "./routes/paymentForm.tsx";
 import Test, { loader as testLoader } from "./routes/test.tsx";
 
 const router = createBrowserRouter([
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
         path: "test",
         element: <Test />,
         loader: testLoader,
+      },
+      {
+        path: "payment",
+        element: <PaymentForm />,
       },
     ],
   },
