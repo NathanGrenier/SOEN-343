@@ -41,7 +41,6 @@ router.post(
         },
       };
 
-      // const { data, error } = 
       await resend.emails.send({
         from: 'swiftsend@christellecharles.agency',
         to: 'christelle.a.charles@gmail.com',

@@ -12,7 +12,7 @@ const resend = new Resend("re_5DuutaCX_Km2moRVmPWf4w7jm1S83yiSH");
 
 router.post(
     "/:id",
-    asyncHandler(async (req , res): Promise<void> => {
+    asyncHandler(async (req , _): Promise<void> => {
       let id;
       if (req instanceof http.IncomingMessage) {
         if (req !== null) {
@@ -41,7 +41,7 @@ router.post(
         },
       };
 
-      const { data, error } = await resend.emails.send({
+      await resend.emails.send({
         from: 'swiftsend@christellecharles.agency',
         to: 'christelle.a.charles@gmail.com',
         subject: 'Delivery Confirmation',

@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import axios from 'axios';
 
 export default function Root() {
@@ -15,7 +15,7 @@ export default function Root() {
   return (
     <>
       <div>
-        <button onClick={() => handleEmailConfirmation("1")}>Send Email Confirmation</button>
+        <button onClick={async () => { await handleEmailConfirmation("1"); }}>Send Email Confirmation</button>
       </div>
       <div>
         <button onClick={() => handleEmailShipped("1")}>Send Email Shipped</button>
