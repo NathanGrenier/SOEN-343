@@ -2,6 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import MainContent from "../Components/MainContent";
+import Footer from "../Components/Footer";
 
 const App: React.FC = () => {
   const navItems = [
@@ -28,10 +29,11 @@ const App: React.FC = () => {
   return (
     <div>
       <Navbar navItems={navItems} logo="../public/assets/images/logo.png" />
-      <div style={{ overflowY: "auto", height: "100vh", marginTop: "4rem" }}>
+      <div style={{ overflowY: "auto", height: "50vh", marginTop: "4rem" }}>
         <MainContent />
-      </div>
       <Outlet />
+      </div>
+        <Footer />
     </div>
   );
 };

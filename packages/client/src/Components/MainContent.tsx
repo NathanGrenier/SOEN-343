@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 // Functional component without props
 const MainContent: React.FC = () => {
   return (
-    <>
+    
+    <div>
       <div className="relative h-[400px] w-full">
         <img
           src="../assets/images/main.jpg"
@@ -115,7 +116,9 @@ const MainContent: React.FC = () => {
           </div>
         </div>
       </div>
-    </>
+      </div>
+      
+   
   );
 };
 
