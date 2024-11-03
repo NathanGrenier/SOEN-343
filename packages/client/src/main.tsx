@@ -14,15 +14,15 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "test",
-        element: <Test />,
-        loader: testLoader,
-      },
-      {
         path: "emails",
         element: <Email />,
       },
     ],
+  },
+  {
+    path: "/test",
+    element: <Test />,
+    loader: testLoader,
   },
 ]);
 

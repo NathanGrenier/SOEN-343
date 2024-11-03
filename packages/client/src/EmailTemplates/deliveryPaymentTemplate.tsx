@@ -1,24 +1,25 @@
 import {
-    Body,
-    Container,
-    Column,
-    Head,
-    Heading,
-    Hr,
-    Html,
-    Link,
-    Preview,
-    Row,
-    Section,
-    Text,
-  } from "@react-email/components";
-  import * as React from "react";
-  import { DeliveryEmailProps } from "./deliveryInterface";
-  
-  export const DeliveryConfirmationEmail: React.FC<DeliveryEmailProps> = ({ delivery }) => (
+  Body,
+  Container,
+  Column,
+  Head,
+  Heading,
+  Hr,
+  Html,
+  Link,
+  Preview,
+  Row,
+  Section,
+  Text,
+} from "@react-email/components";
+import * as React from "react";
+import { DeliveryEmailProps } from "./deliveryInterface";
+
+export default function PaymentEmail({ delivery }: DeliveryEmailProps) {
+  return (
     <Html>
       <Head />
-      <Preview>Get your order summary, estimated delivery date and more</Preview>
+      <Preview>Payment Received for Your Delivery</Preview>
       <Body style={main}>
         <Container style={container}>
           <Section style={track.container}>
@@ -41,28 +42,38 @@ import {
               alt="SwiftSend"
               style={{ margin: "auto" }}
             /> */}
-            <Heading style={global.heading}>Confimation</Heading>
+            <Heading style={global.heading}>Payment Received!</Heading>
             <Text style={global.text}>
-              You delivery request has been confimred! Use the link above to track its progress.
+              We have successfully processed your payment for the delivery
+              service.
             </Text>
             <Text style={{ ...global.text, marginTop: 24 }}>
-              We've also charged your payment method for the cost of your order
-              and will be removing any authorization holds. For payment details,
-              please visit our 'Tracking' page.<br />
-
-              We appreciate your trust in our service!<br /><br />
-              
-              Best regards,<br />
+              Amount Charged: &nbsp;{delivery.amount}
+              <br />
+              Payment Method: &nbsp;{delivery.paymentMethod}
+              <br />
+              Tracking Number: &nbsp;{delivery.trackId}
+              <br />
+              <br />
+              We appreciate your trust in our service!
+              <br />
+              <br />
+              Best regards,{"\n"}
               Swift Send Delivery Team
             </Text>
           </Section>
           <Hr style={global.hr} />
           <Section style={global.defaultPadding}>
-            <Text style={adressTitle}>Shipping to: {delivery.dropOffFirstname} {delivery.dropOffLastname}</Text>
+            <Text style={adressTitle}>
+              Shipping to: {delivery.dropOffFirstname}{" "}
+              {delivery.dropOffLastname}
+            </Text>
             <Text style={{ ...global.text, fontSize: 14 }}>
               {delivery.dropOffAddress}
             </Text>
-            <Text style={adressTitle}>From: {delivery.pickUpFirstname} {delivery.pickUpLastname}</Text>
+            <Text style={adressTitle}>
+              From: {delivery.pickUpFirstname} {delivery.pickUpLastname}
+            </Text>
             <Text style={{ ...global.text, fontSize: 14 }}>
               {delivery.pickUpAddress}
             </Text>
@@ -113,7 +124,7 @@ import {
                 <Row>
                   <Column style={{ width: "16px" }}>
                     {/* <Img
-                      src={'./logo.png'}
+                      src={'../assets/logo.png'}
                       width="16px"
                       height="26px"
                       style={{ paddingRight: "14px" }}
@@ -131,8 +142,7 @@ import {
                   style={{
                     ...menu.text,
                     marginBottom: "0",
-                  }}
-                >
+                  }}>
                   5 am - 11 pm EST
                 </Text>
               </Column>
@@ -143,11 +153,12 @@ import {
             <Row>
               <Text style={global.heading}>SwiftSend.com</Text>
             </Row>
-          <Hr style={{ ...global.hr, marginTop: "12px" }} />
+            <Hr style={{ ...global.hr, marginTop: "12px" }} />
             <Row>
-              <Text style={{ ...footer.text, paddingTop: 30, paddingBottom: 30 }}>
-                Please contact us if you have any questions. (If you reply to this
-                email, we won't be able to see it.)
+              <Text
+                style={{ ...footer.text, paddingTop: 30, paddingBottom: 30 }}>
+                Please contact us if you have any questions. (If you reply to
+                this email, we won't be able to see it.)
               </Text>
             </Row>
             <Row>
@@ -160,142 +171,137 @@ import {
       </Body>
     </Html>
   );
-  
-  export default DeliveryConfirmationEmail;
-  
-  const paddingX = {
-    paddingLeft: "40px",
-    paddingRight: "40px",
-  };
-  
-  const paddingY = {
-    paddingTop: "22px",
-    paddingBottom: "22px",
-  };
-  
-  const paragraph = {
-    margin: "0",
-    lineHeight: "2",
-  };
-  
-  const global = {
-    paddingX,
-    paddingY,
-    defaultPadding: {
-      ...paddingX,
-      ...paddingY,
-    },
-    paragraphWithBold: { ...paragraph, fontWeight: "bold" },
-    heading: {
-      fontSize: "32px",
-      lineHeight: "1.3",
-      fontWeight: "700",
-      textAlign: "center",
-      letterSpacing: "-1px",
-    } as React.CSSProperties,
-    text: {
-      ...paragraph,
-      color: "#747474",
-      fontWeight: "500",
-    },
-    button: {
-      border: "1px solid #929292",
-      fontSize: "16px",
-      textDecoration: "none",
-      padding: "10px 0px",
-      width: "220px",
-      display: "block",
-      textAlign: "center",
-      fontWeight: 500,
-      color: "#000",
-    } as React.CSSProperties,
-    hr: {
-      borderColor: "#E5E5E5",
-      margin: "0",
-    },
-  };
-  
-  const main = {
-    backgroundColor: "#ffffff",
-    fontFamily:
-      '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
-  };
-  
-  const container = {
-    margin: "10px auto",
-    width: "600px",
-    maxWidth: "100%",
-    border: "1px solid #E5E5E5",
-  };
-  
-  const track = {
-    container: {
-      padding: "22px 40px",
-      backgroundColor: "#F7F7F7",
-    },
-    number: {
-      margin: "12px 0 0 0",
-      fontWeight: 500,
-      lineHeight: "1.4",
-      color: "#6F6F6F",
-    },
-  };
-  
-  const message = {
-    padding: "40px 74px",
+}
+
+const paddingX = {
+  paddingLeft: "40px",
+  paddingRight: "40px",
+};
+
+const paddingY = {
+  paddingTop: "22px",
+  paddingBottom: "22px",
+};
+
+const paragraph = {
+  margin: "0",
+  lineHeight: "2",
+};
+
+const global = {
+  paddingX,
+  paddingY,
+  defaultPadding: {
+    ...paddingX,
+    ...paddingY,
+  },
+  paragraphWithBold: { ...paragraph, fontWeight: "bold" },
+  heading: {
+    fontSize: "32px",
+    lineHeight: "1.3",
+    fontWeight: "700",
     textAlign: "center",
-  } as React.CSSProperties;
-  
-  const adressTitle = {
+    letterSpacing: "-1px",
+  } as React.CSSProperties,
+  text: {
     ...paragraph,
-    fontSize: "15px",
+    color: "#747474",
+    fontWeight: "500",
+  },
+  button: {
+    border: "1px solid #929292",
+    fontSize: "16px",
+    textDecoration: "none",
+    padding: "10px 0px",
+    width: "220px",
+    display: "block",
+    textAlign: "center",
+    fontWeight: 500,
+    color: "#000",
+  } as React.CSSProperties,
+  hr: {
+    borderColor: "#E5E5E5",
+    margin: "0",
+  },
+};
+
+const main = {
+  backgroundColor: "#ffffff",
+  fontFamily:
+    '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
+};
+
+const container = {
+  margin: "10px auto",
+  width: "600px",
+  maxWidth: "100%",
+  border: "1px solid #E5E5E5",
+};
+
+const track = {
+  container: {
+    padding: "22px 40px",
+    backgroundColor: "#F7F7F7",
+  },
+  number: {
+    margin: "12px 0 0 0",
+    fontWeight: 500,
+    lineHeight: "1.4",
+    color: "#6F6F6F",
+  },
+};
+
+const message = {
+  padding: "40px 74px",
+  textAlign: "center",
+} as React.CSSProperties;
+
+const adressTitle = {
+  ...paragraph,
+  fontSize: "15px",
+  fontWeight: "bold",
+};
+
+const menu = {
+  container: {
+    paddingLeft: "20px",
+    paddingRight: "20px",
+    paddingTop: "20px",
+    backgroundColor: "#F7F7F7",
+  },
+  content: {
+    ...paddingY,
+    paddingLeft: "20px",
+    paddingRight: "20px",
+  },
+  title: {
+    paddingLeft: "20px",
+    paddingRight: "20px",
     fontWeight: "bold",
-  };
+  },
+  text: {
+    fontSize: "13.5px",
+    marginTop: 0,
+    fontWeight: 500,
+    color: "#000",
+  },
+  tel: {
+    paddingLeft: "20px",
+    paddingRight: "20px",
+    paddingTop: "32px",
+    paddingBottom: "22px",
+  },
+};
 
-  
-  const menu = {
-    container: {
-      paddingLeft: "20px",
-      paddingRight: "20px",
-      paddingTop: "20px",
-      backgroundColor: "#F7F7F7",
-    },
-    content: {
-      ...paddingY,
-      paddingLeft: "20px",
-      paddingRight: "20px",
-    },
-    title: {
-      paddingLeft: "20px",
-      paddingRight: "20px",
-      fontWeight: "bold",
-    },
-    text: {
-      fontSize: "13.5px",
-      marginTop: 0,
-      fontWeight: 500,
-      color: "#000",
-    },
-    tel: {
-      paddingLeft: "20px",
-      paddingRight: "20px",
-      paddingTop: "32px",
-      paddingBottom: "22px",
-    },
-  };
-
-  
-  const footer = {
-    policy: {
-      width: "166px",
-      margin: "auto",
-    },
-    text: {
-      margin: "0",
-      color: "#AFAFAF",
-      fontSize: "13px",
-      textAlign: "center",
-    } as React.CSSProperties,
-  };
-  
-  
+const footer = {
+  policy: {
+    width: "166px",
+    margin: "auto",
+  },
+  text: {
+    margin: "0",
+    color: "#AFAFAF",
+    fontSize: "13px",
+    textAlign: "center",
+  } as React.CSSProperties,
+};

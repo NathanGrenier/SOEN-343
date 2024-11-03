@@ -20,5 +20,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "src/notifications", "../server/src/routes/deliveryConfirmation.ts", "../server/src/emails/deliveryConfirmationTemplate.tsx", "../server/src/emails/deliveryShippedTemplate.tsx", "../server/src/emails/paymentTemplate.tsx"]
+  "include": ["src"]
 }
