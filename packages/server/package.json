@@ -27,6 +27,7 @@
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/node": "^22.8.6",
+    "@types/pg": "^8.11.10",
     "dotenv-cli": "^7.4.2",
     "node-pg-migrate": "^7.7.1",
     "nodemon": "^3.1.7",
