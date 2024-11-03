@@ -15,7 +15,7 @@ export default function Contact() {
 
   return (
     <div className="bg-cus flex min-h-screen flex-col items-center justify-center bg-gray-200">
-      <h1 className="mb-8 text-4xl font-bold text-blue-600">Test App!</h1>
+      <h1 className="mb-8 text-4xl font-bold text-blue-600">Test App!!!</h1>
       <div className="rounded-lg bg-white p-6 shadow-md">
         <Form method="post" className="mt-4">
           <label className="mb-2 block text-lg font-semibold">
