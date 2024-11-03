@@ -3,10 +3,8 @@ import { Link } from "react-router-dom";
 
 // Functional component without props
 const MainContent: React.FC = () => {
-
   return (
     <>
-    
       <div className="relative h-[400px] w-full">
         <img
           src="../assets/images/main.jpg"
@@ -55,8 +53,66 @@ const MainContent: React.FC = () => {
           </p>
           <br />
           <Link to="/">
-            <p className="text-mainGreen">Get Started</p>
+            <button className="bg-mainGreen text-gray rounded px-4 py-2">
+                  Get Started
+                </button>
           </Link>
+        </div>
+      </div>
+
+      <div className="inset-y-50 absolute inset-x-10 mt-32 flex h-[90%] flex-col justify-center">
+        <p className="flex justify-center text-4xl">Why Choose Swift</p>
+
+        <div className="mt-14 ml-20 flex justify-center">
+          <div className="relative h-[400px] w-full">
+            <img
+              src="../assets/images/boxes.jpg"
+              alt="boxes"
+              className="absolute h-auto max-h-[350px] w-auto max-w-[70%] rounded-md object-contain shadow-xl"
+            />
+          </div>
+          <div className="mt-4  ml-[40%] absolute flex flex-col items-center">
+            <div className="flex space-x-48">
+              <div className="relative flex flex-col items-center">
+                <div className="relative bg-mainGreen flex h-20 w-20 items-center justify-center rounded-full shadow-lg" />
+                <img
+                  src="../assets/images/fast.png"
+                  alt="time"
+                  className=" absolute top-[35px] left-[20%] h-[50%] w-[100%] object-fit" 
+                />
+                <p className="mt-8 text-center"> Fast Delivery</p>
+              </div>
+              <div className="relative flex flex-col items-center">
+                <div className="relative bg-mainGreen flex h-20 w-20 items-center justify-center rounded-full shadow-lg" />
+                <img
+                  src="../assets/images/tracking.png"
+                  alt="tracking"
+                  className="absolute top-[35px] left-[55%] h-[50%] w-[48%] object-fit"
+                />
+                <p className="mt-8 text-center">Real Time Tracking</p>
+              </div>
+            </div>
+            <div className="mt-16 flex space-x-40">
+              <div className="relative flex flex-col items-center">
+                <div className="relative bg-mainGreen flex h-20 w-20 items-center justify-center rounded-full shadow-lg" />
+                <img
+                  src="../assets/images/earth.png"
+                  alt="earth"
+                  className="absolute top-[35px] left-[45%] h-[50%] w-[48%] object-fit"
+                />
+                <p className="mt-8 text-center">Worldwide Shipping</p>
+              </div>
+              <div className="relative flex flex-col items-center">
+                <div className="relative bg-mainGreen flex h-20 w-20 items-center justify-center rounded-full shadow-lg" />
+                <img
+                  src="../assets/images/service.png"
+                  alt="headset"
+                  className="absolute top-[35px] left-[45%] h-[50%] w-[40%] object-fit"
+                />
+                <p className="mt-8 text-center">24/7 Customer Support</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>

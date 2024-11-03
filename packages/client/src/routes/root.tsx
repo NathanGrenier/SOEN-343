@@ -3,7 +3,6 @@ import { Outlet } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import MainContent from "../Components/MainContent";
 
-
 const App: React.FC = () => {
   const navItems = [
     { name: "Home", path: "/test" },
@@ -29,9 +28,11 @@ const App: React.FC = () => {
   return (
     <div>
       <Navbar navItems={navItems} logo="../public/assets/images/logo.png" />
-      <div className="mt-16"><MainContent /></div>
-      <Outlet />
+      <div style={{ overflowY: "auto", height: "100vh", marginTop: "4rem" }}>
+        <MainContent />
       </div>
+      <Outlet />
+    </div>
   );
 };
 
