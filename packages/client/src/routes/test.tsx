@@ -1,6 +1,6 @@
 import { Form, useFetcher, useLoaderData } from "react-router-dom";
-import DeleteBinIcon from "../icons/DeleteBinIcon";
 import type { TestLoaderData } from "./test";
+import { Trash2 } from "lucide-react";
 
 export default function Contact() {
   const { data } = useLoaderData() as TestLoaderData;
@@ -76,7 +76,7 @@ export default function Contact() {
                     <button
                       onClick={() => handleDelete(entry.id)}
                       className="rounded-md bg-red-600 px-3 py-2 text-white hover:bg-red-700">
-                      <DeleteBinIcon />
+                      <Trash2 size={18} />
                     </button>
                   </td>
                 </tr>
