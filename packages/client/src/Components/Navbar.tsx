@@ -45,7 +45,7 @@ export default function Navbar({ navItems, logo }: NavbarProps) {
             onMouseLeave={() => toggleDropdown(null)}>
             <Link
               to={item.path}
-              className="hover:bg-mainGreen rounded px-4 py-2 text-black">
+              className="hover:bg-custom-mainGreen rounded px-4 py-2 text-black">
               {item.name}
             </Link>
             {openDropdown === item.name && item.dropdownItems && (
@@ -54,7 +54,7 @@ export default function Navbar({ navItems, logo }: NavbarProps) {
                   <li key={dropdownItem.name}>
                     <Link
                       to={dropdownItem.path}
-                      className="hover:bg-mainGreen block px-4 py-2">
+                      className="hover:bg-custom-mainGreen block px-4 py-2">
                       {dropdownItem.name}
                     </Link>
                   </li>

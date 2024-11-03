@@ -12,18 +12,18 @@ export default function MainContent() {
         <div className="absolute inset-0 flex flex-col bg-black bg-opacity-30">
           <div className="absolute inset-x-0 top-[30%] flex flex-col items-center justify-center text-center">
             <p className="text-5xl font-bold text-white">SwiftSend</p>
-            <p className="text-mainGreen text-xl">On Time, Every Time</p>
+            <p className="text-custom-mainGreen text-xl">On Time, Every Time</p>
             <p className="text-sm text-white">
               Experience the fastest most reliable delivery service worldwide
             </p>
             <div className="absolute inset-x-0 mt-[170px] flex items-center justify-center space-x-4">
               <Link to="/test">
-                <button className="bg-mainGreen text-gray rounded px-4 py-2">
+                <button className="bg-custom-mainGreen text-custom-gray rounded px-4 py-2">
                   Ship Now
                 </button>
               </Link>
               <Link to="/">
-                <button className="bg-gray text-mainGreen rounded px-4 py-2">
+                <button className="bg-custom-gray text-custom-mainGreen rounded px-4 py-2">
                   Track Now
                 </button>
               </Link>
@@ -33,8 +33,8 @@ export default function MainContent() {
       </div>
 
       <div className="absolute inset-0 top-[50%] mx-auto flex h-[30%] w-[50%] items-start justify-start bg-white shadow-xl">
-        <div className="bg-lightGray relative flex h-[100%] w-[30%] items-start justify-start">
-          <div className="bg-mainGreen absolute inset-0 mx-auto my-auto flex h-20 w-20 -translate-y-10 transform items-center justify-center rounded-full shadow-lg" />
+        <div className="bg-custom-lightGray relative flex h-[100%] w-[30%] items-start justify-start">
+          <div className="bg-custom-mainGreen absolute inset-0 mx-auto my-auto flex h-20 w-20 -translate-y-10 transform items-center justify-center rounded-full shadow-lg" />
           <img
             src="../assets/images/DeliveryTruck.png"
             alt="delivery truck"
@@ -52,7 +52,7 @@ export default function MainContent() {
           </p>
           <br />
           <Link to="/">
-            <button className="bg-mainGreen text-gray rounded px-4 py-2">
+            <button className="bg-custom-mainGreen text-custom-gray rounded px-4 py-2">
               Get Started
             </button>
           </Link>
@@ -72,7 +72,7 @@ export default function MainContent() {
           <div className="absolute ml-[40%] mt-4 flex flex-col items-center">
             <div className="flex space-x-48">
               <div className="relative flex flex-col items-center">
-                <div className="bg-mainGreen relative flex h-20 w-20 items-center justify-center rounded-full shadow-lg" />
+                <div className="bg-custom-mainGreen relative flex h-20 w-20 items-center justify-center rounded-full shadow-lg" />
                 <img
                   src="../assets/images/fast.png"
                   alt="time"
@@ -81,7 +81,7 @@ export default function MainContent() {
                 <p className="mt-8 text-center">Fast Delivery</p>
               </div>
               <div className="relative flex flex-col items-center">
-                <div className="bg-mainGreen relative flex h-20 w-20 items-center justify-center rounded-full shadow-lg" />
+                <div className="bg-custom-mainGreen relative flex h-20 w-20 items-center justify-center rounded-full shadow-lg" />
                 <img
                   src="../assets/images/tracking.png"
                   alt="tracking"
@@ -92,7 +92,7 @@ export default function MainContent() {
             </div>
             <div className="mt-16 flex space-x-40">
               <div className="relative flex flex-col items-center">
-                <div className="bg-mainGreen relative flex h-20 w-20 items-center justify-center rounded-full shadow-lg" />
+                <div className="bg-custom-mainGreen relative flex h-20 w-20 items-center justify-center rounded-full shadow-lg" />
                 <img
                   src="../assets/images/earth.png"
                   alt="earth"
@@ -101,7 +101,7 @@ export default function MainContent() {
                 <p className="mt-8 text-center">Worldwide Shipping</p>
               </div>
               <div className="relative flex flex-col items-center">
-                <div className="bg-mainGreen relative flex h-20 w-20 items-center justify-center rounded-full shadow-lg" />
+                <div className="bg-custom-mainGreen relative flex h-20 w-20 items-center justify-center rounded-full shadow-lg" />
                 <img
                   src="../assets/images/service.png"
                   alt="headset"

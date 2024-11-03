@@ -4,6 +4,8 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import { makeAPIPath } from "./util.js";
+import { runner } from "node-pg-migrate";
+import Database from "./db/db.js";
 
 import healthRouter from "./health.js";
 import testRouter from "./routes/test.js";
@@ -11,7 +13,7 @@ import testRouter from "./routes/test.js";
 // import deliveryShippedRouter from "./routes/deliveryShipped.js";
 // import deliveryPaymentRouter from "./routes/deliveryPayment.js";
 
-const db = null; // Replace with the database singleton
+const db = Database.getPool();
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -38,7 +40,7 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(clientBuildPath, "index.html"));
   });
 } else if (process.env.NODE_ENV === "development") {
-  app.use(cors());
+  app.use(cors({ methods: ["GET", "POST", "DELETE", "OPTIONS"] }));
 }
 
 const server = app.listen(PORT, () => {
@@ -60,6 +62,10 @@ function gracefulShutdown() {
     if (db) {
       console.log("Closing database connections...");
       // Handle closing database connections
+      db.end().then(() => {
+        console.log("Database connections closed");
+        process.exit(0);
+      });
     } else {
       process.exit(0);
     }
@@ -73,3 +79,27 @@ function gracefulShutdown() {
     process.exit(1);
   }, 30000); // 30 seconds timeout
 }
+
+async function runMigrations() {
+  const databaseUrl = process.env.DATABASE_URL || "";
+  const dir = `${__dirname}/../migrations`;
+
+  console.log(`Running migrations from ${dir}`);
+  try {
+    await runner({
+      databaseUrl: databaseUrl,
+      migrationsTable: "pgmigrations", // Default migrations table name
+      dir: dir,
+      direction: "up",
+      count: Infinity, // Run all pending migrations
+    });
+
+    console.log("Migrations completed successfully");
+  } catch (error) {
+    console.error("Migration failed:", error);
+    throw error;
+  }
+}
+
+// Execute migrations
+runMigrations().catch(() => process.exit(1));
