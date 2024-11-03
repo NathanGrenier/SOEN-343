@@ -5,12 +5,13 @@ declare interface TestLoaderData {
   data: JSON;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export async function loader(): Promise<TestLoaderData | null> {
   try {
     const response = await fetch(`${__API_PATH__}/test`, {
       method: "GET",
     });
-    const data = await response.json();
+    const data = (await response.json()) as JSON;
     return { data };
   } catch (error) {
     console.error("Error fetching data:", error);
