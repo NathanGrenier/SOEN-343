@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
 import LiveChatPopUp from "../components/LiveChatPopUp";
-import Navbar from "../Components/Navbar";
-import MainContent from "../Components/MainContent";
-import Footer from "../Components/Footer";
+import Navbar from "../components/Navbar";
+import MainContent from "../components/MainContent";
+import Footer from "../components/Footer";
 
 export default function Root() {
   const navItems = [
@@ -32,6 +32,7 @@ export default function Root() {
       <Navbar navItems={navItems} logo="assets/images/logo.png" />
       <div style={{ overflowY: "auto", height: "50vh", marginTop: "4rem" }}>
         <MainContent />
+        <LiveChatPopUp />
         <Outlet />
       </div>
       <Footer />

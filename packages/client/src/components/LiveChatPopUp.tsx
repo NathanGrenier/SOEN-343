@@ -1,21 +1,61 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./LiveChatPopUp.css";
+import * as GoogleGenerativeAI from "@google/generative-ai";
 
+type Message = {
+  text: string;
+  user: boolean;
+};
 
-function LiveChatPopUp() {
+const LiveChatPopUp = () => {
   const [isToggled, setIsToggled] = useState(false);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [userInput, setUserInput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const API_KEY = "AIzaSyDce1yYPhwIwFoP_OM_gG6Ntt8PFoIp8TY";
 
-  const toggle = () => {
-    setIsToggled(!isToggled);
-    console.log(isToggled);
+  const toggle = () => setIsToggled(!isToggled);
+
+  const sendMessage = async () => {
+    if (!userInput.trim()) return; // Ignore empty input
+
+    const newMessage: Message = { text: userInput, user: true };
+    setMessages([...messages, newMessage]);
+    setUserInput("");
+
+    setLoading(true);
+    try {
+      const genAI = new GoogleGenerativeAI.GoogleGenerativeAI(API_KEY);
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+      const websiteInfo =
+        "I am a chatbot for a website that offers delivery services for packages. Our company, SwiftSend, offers, fast delivery, real time tracking, worldwide shipping, and 24/7 customer support. You can get a quotation for a delivery, you can request a delivery, you can tack your package using your tracking id.";
+      const prompt = `${websiteInfo} User's question: ${userInput}`;
+
+      const result = await model.generateContent(prompt);
+      const botText =
+        typeof result.response.text === "function"
+          ? result.response.text()
+          : "Error in response";
+
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { text: botText, user: false },
+      ]);
+    } catch (error) {
+      console.error("Error generating content:", error);
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { text: "Error generating response.", user: false },
+      ]);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="button-placement">
-      <button
-        className="chat-toggle-button"
-        onClick={toggle}>
-       <h2>...</h2>
+      <button className="chat-toggle-button" onClick={toggle}>
+        <h2>...</h2>
       </button>
 
       {isToggled && (
@@ -28,11 +68,13 @@ function LiveChatPopUp() {
           </div>
           <div className="chat-body">
             <div className="chat-messages">
-              {/* Example messages */}
-              <div className="message bot">Hello! How can I help you?</div>
-              <div className="message user">
-                Hi, I have a question about your service.
-              </div>
+              {messages.map((msg, index) => (
+                <div
+                  key={index}
+                  className={`message ${msg.user ? "user" : "bot"}`}>
+                  {msg.text}
+                </div>
+              ))}
             </div>
           </div>
           <div className="chat-footer">
@@ -40,12 +82,20 @@ function LiveChatPopUp() {
               type="text"
               className="chat-input"
               placeholder="Type your message..."
+              onChange={(e) => setUserInput(e.target.value)}
+              value={userInput}
             />
-            <button className="send-button">Send</button>
+            <button
+              className="send-button"
+              onClick={sendMessage}
+              disabled={loading}>
+              {loading ? "Sending..." : "Send"}
+            </button>
           </div>
         </div>
       )}
     </div>
   );
-}
+};
+
 export default LiveChatPopUp;
