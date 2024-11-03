@@ -31,9 +31,9 @@ const App: React.FC = () => {
       <Navbar navItems={navItems} logo="../public/assets/images/logo.png" />
       <div style={{ overflowY: "auto", height: "50vh", marginTop: "4rem" }}>
         <MainContent />
-      <Outlet />
+        <Outlet />
       </div>
-        <Footer />
+      <Footer />
     </div>
   );
 };

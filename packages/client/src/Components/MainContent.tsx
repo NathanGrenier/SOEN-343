@@ -1,10 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-// Functional component without props
 const MainContent: React.FC = () => {
   return (
-    
     <div>
       <div className="relative h-[400px] w-full">
         <img
@@ -15,11 +13,11 @@ const MainContent: React.FC = () => {
         <div className="absolute inset-0 flex flex-col bg-black bg-opacity-30">
           <div className="absolute inset-x-0 top-[30%] flex flex-col items-center justify-center text-center">
             <p className="text-5xl font-bold text-white">SwiftSend</p>
-            <p className="text-mainGreen text-xl"> On Time, Every Time</p>
+            <p className="text-mainGreen text-xl">On Time, Every Time</p>
             <p className="text-sm text-white">
               Experience the fastest most reliable delivery service worldwide
             </p>
-            <div className="absolute inset-x-0 mt-[170px] flex h-screen items-center justify-center space-x-4">
+            <div className="absolute inset-x-0 mt-[170px] flex items-center justify-center space-x-4">
               <Link to="/test">
                 <button className="bg-mainGreen text-gray rounded px-4 py-2">
                   Ship Now
@@ -34,6 +32,7 @@ const MainContent: React.FC = () => {
           </div>
         </div>
       </div>
+
       <div className="absolute inset-0 top-[50%] mx-auto flex h-[30%] w-[50%] items-start justify-start bg-white shadow-xl">
         <div className="bg-lightGray relative flex h-[100%] w-[30%] items-start justify-start">
           <div className="bg-mainGreen absolute inset-0 mx-auto my-auto flex h-20 w-20 -translate-y-10 transform items-center justify-center rounded-full shadow-lg" />
@@ -55,15 +54,14 @@ const MainContent: React.FC = () => {
           <br />
           <Link to="/">
             <button className="bg-mainGreen text-gray rounded px-4 py-2">
-                  Get Started
-                </button>
+              Get Started
+            </button>
           </Link>
         </div>
       </div>
 
-      <div className="inset-y-50 absolute inset-x-10 mt-32 flex h-[90%] flex-col justify-center">
+      <div className="absolute inset-x-10 mt-32 flex h-[90%] flex-col justify-center">
         <p className="flex justify-center text-4xl">Why Choose Swift</p>
-
         <div className="mt-14 ml-20 flex justify-center">
           <div className="relative h-[400px] w-full">
             <img
@@ -72,16 +70,16 @@ const MainContent: React.FC = () => {
               className="absolute h-auto max-h-[350px] w-auto max-w-[70%] rounded-md object-contain shadow-xl"
             />
           </div>
-          <div className="mt-4  ml-[40%] absolute flex flex-col items-center">
+          <div className="mt-4 ml-[40%] absolute flex flex-col items-center">
             <div className="flex space-x-48">
               <div className="relative flex flex-col items-center">
                 <div className="relative bg-mainGreen flex h-20 w-20 items-center justify-center rounded-full shadow-lg" />
                 <img
                   src="../assets/images/fast.png"
                   alt="time"
-                  className=" absolute top-[35px] left-[20%] h-[50%] w-[100%] object-fit" 
+                  className="absolute top-[35px] left-[20%] h-[50%] w-[100%] object-fit"
                 />
-                <p className="mt-8 text-center"> Fast Delivery</p>
+                <p className="mt-8 text-center">Fast Delivery</p>
               </div>
               <div className="relative flex flex-col items-center">
                 <div className="relative bg-mainGreen flex h-20 w-20 items-center justify-center rounded-full shadow-lg" />
@@ -116,11 +114,8 @@ const MainContent: React.FC = () => {
           </div>
         </div>
       </div>
-      </div>
-      
-   
+    </div>
   );
 };
 
-// Export the component
 export default MainContent;
