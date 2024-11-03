@@ -4,10 +4,13 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import Root from "./routes/root.tsx";
 import ErrorPage from "./error-page.tsx";
+
 import Test, {
   loader as testLoader,
   action as testAction,
 } from "./routes/test.tsx";
+
+import Email from "./routes/emailsTemplate.tsx";
 
 const router = createBrowserRouter([
   {
@@ -16,13 +19,17 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "test",
-        element: <Test />,
-        loader: testLoader,
-        action: testAction,
-        children: [{ path: ":id", action: testAction }],
+        path: "emails",
+        element: <Email />,
       },
     ],
+  },
+  {
+    path: "test",
+    element: <Test />,
+    loader: testLoader,
+    action: testAction,
+    children: [{ path: ":id", action: testAction }],
   },
 ]);
 
