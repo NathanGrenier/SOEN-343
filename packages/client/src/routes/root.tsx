@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
-import LiveChatPopUp from "../components/LiveChatPopUp";
-import Navbar from "../components/Navbar";
-import MainContent from "../components/MainContent";
-import Footer from "../components/Footer";
+import LiveChatPopUp from "../Components/LiveChatPopUp";
+import Navbar from "../Components/Navbar";
+import MainContent from "../Components/MainContent";
+import Footer from "../Components/Footer";
 
 export default function Root() {
   const navItems = [

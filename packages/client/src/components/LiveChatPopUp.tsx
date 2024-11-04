@@ -12,8 +12,8 @@ const LiveChatPopUp = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [userInput, setUserInput] = useState("");
   const [loading, setLoading] = useState(false);
-  const API_KEY =import.meta.env.API_KEY;
-  console.log("api kjey", API_KEY);
+  const API_KEY = import.meta.env.VITE_API_KEY;
+  console.log("api key", API_KEY);
 
   const toggle = () => setIsToggled(!isToggled);
 
