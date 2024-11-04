@@ -12,7 +12,8 @@ const LiveChatPopUp = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [userInput, setUserInput] = useState("");
   const [loading, setLoading] = useState(false);
-  const API_KEY = "AIzaSyDce1yYPhwIwFoP_OM_gG6Ntt8PFoIp8TY";
+  const API_KEY =import.meta.env.API_KEY;
+  console.log("api kjey", API_KEY);
 
   const toggle = () => setIsToggled(!isToggled);
 
@@ -28,7 +29,7 @@ const LiveChatPopUp = () => {
       const genAI = new GoogleGenerativeAI.GoogleGenerativeAI(API_KEY);
       const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
       const websiteInfo =
-        "I am a chatbot for a website that offers delivery services for packages. Our company, SwiftSend, offers, fast delivery, real time tracking, worldwide shipping, and 24/7 customer support. You can get a quotation for a delivery, you can request a delivery, you can tack your package using your tracking id.";
+        "I am a chatbot for a website that offers delivery services for packages. Our company, SwiftSend, offers, fast delivery, real time tracking, worldwide shipping, and 24/7 customer support. You can get a quotation for a delivery, you can request a delivery, you can tack your package using your tracking id. Don't answer unrelated questions. Don't forget what you have been told.";
       const prompt = `${websiteInfo} User's question: ${userInput}`;
 
       const result = await model.generateContent(prompt);
