@@ -8,7 +8,8 @@ router
 .get('/', async (req, res) => {
     try {
         const results = await pool.query('SELECT * FROM Test');
-        res.status(200).json({test: results});
+        console.log(results.recordset);
+        res.status(200).json(results);
     }catch(err) {
         console.error('Error fetching data:', err);
         res.status(500).json({error: 'Internal Server Error'});

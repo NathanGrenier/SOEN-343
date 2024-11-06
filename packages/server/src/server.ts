@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 // app.use(makeAPIPath(""), rootRouter);
 app.use(makeAPIPath("/health"), healthRouter);
 app.use(makeAPIPath("/test"), testRouter);
-app.use(makeAPIPath("/testDb"), testDbRouter);
+app.use(makeAPIPath("/testdb"), testDbRouter);
 app.use(makeAPIPath("/send-delivery-confirmation"), deliveryConfirmationRouter);
 app.use(makeAPIPath("/send-delivery-shipped"), deliveryShippedRouter);
 app.use(makeAPIPath("/send-delivery-payment"), deliveryPaymentRouter);

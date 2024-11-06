@@ -12,7 +12,7 @@ export default function Root() {
     await axios.post(`/api/send-delivery-payment/${id}`);
   };
   const handleTestDB = async () => {
-    await axios.post(`/api/testDb`);
+    await axios.get(`/api/testdb`);
   };
 
   return (

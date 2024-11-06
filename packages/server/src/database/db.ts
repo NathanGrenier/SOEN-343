@@ -2,9 +2,9 @@ import sql from 'mssql';
 
 const dbConfig = {
   server: "sql.bsite.net\\MSSQL2016",
-  database: "hexad_",
-  user: "hexad_",
-  password: "hexad2024",
+  database: "swiftsend_",
+  user: "swiftsend_",
+  password: "swiftsend2024",
   port: 1433,
   options: {
     trustedConnection: true,
