@@ -1,13 +1,13 @@
 import { Router } from "express";
 
-import pool from '../database/db';
+import pool from '../database/db.js';
 const router = Router();
 
 
 router
 .get('/', async (req, res) => {
     try {
-        const results = await pool.query('SELECT * FROM test');
+        const results = await pool.query('SELECT * FROM Test');
         res.status(200).json({test: results});
     }catch(err) {
         console.error('Error fetching data:', err);

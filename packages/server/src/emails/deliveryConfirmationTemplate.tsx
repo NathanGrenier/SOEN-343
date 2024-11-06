@@ -43,7 +43,7 @@ import {
             /> */}
             <Heading style={global.heading}>Confimation</Heading>
             <Text style={global.text}>
-              You delivery request has been confimred! Use the link above to track its progress.
+              You delivery request has been confirmed! Use the link above to track its progress.
             </Text>
             <Text style={{ ...global.text, marginTop: 24 }}>
               We've also charged your payment method for the cost of your order
