@@ -10,6 +10,7 @@ export interface DeliveryEmailProps {
     startDate: string;
     endDate: string;
     amount: number;
-    paymentMethod: string;
+    email: string;
   };
 }
+
