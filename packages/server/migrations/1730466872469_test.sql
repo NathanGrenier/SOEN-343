@@ -1,0 +1,10 @@
+-- Up Migration
+CREATE TABLE
+  IF NOT EXISTS test (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  );
+
+-- Down Migration
+DROP TABLE IF EXISTS test;
