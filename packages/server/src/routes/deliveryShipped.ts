@@ -3,7 +3,7 @@ import express from "express";
 import * as http from 'http';
 import asyncHandler from "express-async-handler";
 import { Resend } from "resend";
-import { DeliveryEmailProps } from "../emails/deliveryInterface";
+import { DeliveryEmailProps } from "../emails/deliveryInterface.js";
 import DeliveryShippedEmail from '../emails/deliveryShippedTemplate.js';
 import dotenv from 'dotenv';
 

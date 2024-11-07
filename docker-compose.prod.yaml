@@ -35,14 +35,11 @@ services:
       - "traefik.http.routers.app.rule=PathPrefix(`/`)"
       - "traefik.http.routers.app.entrypoints=web"
       - "traefik.http.services.app.loadbalancer.server.port=3001"
-    secrets:
-      - db-password
     env_file:
       - .env
     environment:
       - VITE_SERVER_URL=http://app:3001
-      - NODE_ENV=production
-      - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
+      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:${POSTGRES_PORT}/${POSTGRES_DB}
     deploy:
       mode: replicated
       replicas: 3
@@ -57,14 +54,10 @@ services:
     image: postgres
     container_name: postgres
     user: postgres
-    secrets:
-      - db-password
     volumes:
       - db-data:/var/lib/postgresql/data
     env_file:
       - .env
-    environment:
-      - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
     expose:
       - 5432
     restart: always
@@ -82,7 +75,3 @@ networks:
 
 volumes:
   db-data:
-
-secrets:
-  db-password:
-    file: db-secrets/password.txt
