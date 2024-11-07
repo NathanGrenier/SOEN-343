@@ -7,6 +7,8 @@ import ErrorPage from "./error-page.tsx";
 import Test, { loader as testLoader } from "./routes/test.tsx";
 import Email from "./routes/emailsTemplate.tsx";
 
+import PaymentForm from "./Components/Payment/paymentForm.tsx";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -23,6 +25,11 @@ const router = createBrowserRouter([
         element: <Email />,
       },
     ],
+    
+  },
+  {
+    path: "payment",
+    element: <PaymentForm />,
   },
 ]);
 
