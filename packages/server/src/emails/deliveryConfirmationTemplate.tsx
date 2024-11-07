@@ -13,7 +13,7 @@ import {
     Text,
   } from "@react-email/components";
   import * as React from "react";
-  import { DeliveryEmailProps } from "./deliveryInterface";
+  import { DeliveryEmailProps } from "./deliveryInterface.js";
   
   export const DeliveryConfirmationEmail: React.FC<DeliveryEmailProps> = ({ delivery }) => (
     <Html>
