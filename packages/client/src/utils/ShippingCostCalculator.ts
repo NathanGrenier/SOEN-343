@@ -1,4 +1,4 @@
-type CostStrategy = (weight: number, isExpress: boolean) => number;
+type CostStrategy = (weight: number, isExpress: boolean, shippingFee: number) => number;
 
 export class ShippingCostCalculator {
   private strategy: CostStrategy;
@@ -11,7 +11,7 @@ export class ShippingCostCalculator {
     this.strategy = strategy;
   }
 
-  calculate(weight: number, isExpress: boolean): number {
-    return this.strategy(weight, isExpress);
+  calculate(weight: number, isExpress: boolean, shippingFee: number): number {
+    return this.strategy(weight, isExpress, shippingFee);
   }
 }
