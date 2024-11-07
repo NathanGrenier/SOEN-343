@@ -5,9 +5,13 @@ import asyncHandler from "express-async-handler";
 import { Resend } from "resend";
 import { DeliveryEmailProps } from "../emails/deliveryInterface";
 import DeliveryShippedEmail from '../emails/deliveryShippedTemplate.js';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 
 const router = express.Router();
-const resend = new Resend("re_5DuutaCX_Km2moRVmPWf4w7jm1S83yiSH");
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 
 router.post(
