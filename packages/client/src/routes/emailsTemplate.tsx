@@ -11,6 +11,9 @@ export default function Root() {
   const handleEmailPayment = async (id:string) => {
     await axios.post(`/api/send-delivery-payment/${id}`);
   };
+  const handleTestDB = async () => {
+    await axios.get(`/api/testdb`);
+  };
 
   return (
     <>
@@ -22,6 +25,9 @@ export default function Root() {
       </div>
       <div>
         <button onClick={() => handleEmailPayment("1")}>Send Email Payment</button>
+      </div>
+      <div>
+        <button onClick={() => handleTestDB()}>Test db</button>
       </div>
     </>
   );

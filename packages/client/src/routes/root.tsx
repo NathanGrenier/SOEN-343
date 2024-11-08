@@ -1,12 +1,12 @@
+import React from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import MainContent from "../Components/MainContent";
 import Footer from "../Components/Footer";
 
-export default function Root() {
+const App: React.FC = () => {
   const navItems = [
-    { name: "Home", path: "/" },
-    { name: "Test", path: "/test" },
+    { name: "Home", path: "/test" },
     { name: "Shipping", path: "/" },
     { name: "Tracking", path: "/" },
     { name: "Services", path: "/" },
@@ -28,7 +28,7 @@ export default function Root() {
 
   return (
     <div>
-      <Navbar navItems={navItems} logo="assets/images/logo.png" />
+      <Navbar navItems={navItems} logo="../public/assets/images/logo.png" />
       <div style={{ overflowY: "auto", height: "50vh", marginTop: "4rem" }}>
         <MainContent />
         <Outlet />
@@ -36,4 +36,6 @@ export default function Root() {
       <Footer />
     </div>
   );
-}
+};
+
+export default App;
