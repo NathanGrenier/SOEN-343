@@ -50,7 +50,6 @@ import {
             </Text>
             <Text style={{ ...global.text, marginTop: 24 }}>
             Amount Charged: &nbsp;{delivery.amount}<br />
-            Payment Method: &nbsp;{delivery.paymentMethod}<br />
             Tracking Number: &nbsp;{delivery.trackId}<br /><br />
 
             We appreciate your trust in our service!<br /><br />

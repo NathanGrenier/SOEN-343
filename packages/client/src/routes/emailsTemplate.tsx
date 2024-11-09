@@ -14,20 +14,28 @@ export default function Root() {
   const handleTestDB = async () => {
     await axios.get(`/api/testdb`);
   };
+  const handleTestPackage = async (id:string) => {
+    await axios.get(`/api/packages/amount/${id}`);
+
+  };
+
 
   return (
     <>
       <div>
-        <button onClick={async () => { await handleEmailConfirmation("1"); }}>Send Email Confirmation</button>
+        <button onClick={async () => { await handleEmailConfirmation("18"); }}>Send Email Confirmation</button>
       </div>
       <div>
-        <button onClick={() => handleEmailShipped("1")}>Send Email Shipped</button>
+        <button onClick={() => handleEmailShipped("18")}>Send Email Shipped</button>
       </div>
       <div>
-        <button onClick={() => handleEmailPayment("1")}>Send Email Payment</button>
+        <button onClick={() => handleEmailPayment("18")}>Send Email Payment</button>
       </div>
       <div>
         <button onClick={() => handleTestDB()}>Test db</button>
+      </div>
+      <div>
+        <button onClick={() => handleTestPackage("18")}>Get Test Package</button>
       </div>
     </>
   );
