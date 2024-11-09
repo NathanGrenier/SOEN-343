@@ -22,8 +22,6 @@ router
       const id = req.params.id;
       const delivery = await getDeliveryData(id);
 
-      console.log(delivery)
-
       const { data, error} = await resend.emails.send({
         from: 'swiftsend@christellecharles.agency',
         to: delivery.delivery.email,
@@ -47,8 +45,6 @@ router
       const id = req.params.id;
       const delivery = await getDeliveryData(id);
 
-      console.log(delivery)
-
       const { data, error} = await resend.emails.send({
         from: 'swiftsend@christellecharles.agency',
         to: delivery.delivery.email,
@@ -71,8 +67,6 @@ router
     asyncHandler(async (req , res): Promise<void> => {
       const id = req.params.id;
       const delivery = await getDeliveryData(id);
-
-      console.log(delivery)
 
       const { data, error} = await resend.emails.send({
         from: 'swiftsend@christellecharles.agency',

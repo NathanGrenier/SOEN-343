@@ -11,7 +11,7 @@ router
         const results = await pool.query(
             `INSERT INTO Packages (dropOffName, dropOffLastName, dropOffAddress, dropOffDate, pickUpName, pickUpLastName, pickUpAddress, pickUpDate, amount, email)` +
              `VALUES(${packages.dropOffName}, ${packages.dropOffLastName}, ${packages.dropOffAddress}, ${packages.dropOffDate}, ${packages.pickUpName}, ${packages.pickUpLastName}, ${packages.pickUpAddress}, ${packages.pickUpDate}, ${packages.amount}, ${packages.email})`);
-        res.status(200).json(results);
+        res.status(200).json(results.recordset);
     }catch(err) {
         console.error('Error fetching data:', err);
         res.status(500).json({error: 'Internal Server Error'});
@@ -22,8 +22,7 @@ router
     const id = req.params.id;
     try {
         const results = await pool.query(`SELECT * FROM Packages WHERE id = ${id}`);
-        console.log(results.recordset);
-        res.status(200).json(results);
+        res.status(200).json(results.recordset);
     }catch(err) {
         console.error('Error fetching data:', err);
         res.status(500).json({error: 'Internal Server Error'});
