@@ -15,7 +15,8 @@ export default function Root() {
     await axios.get(`/api/testdb`);
   };
   const handleTestPackage = async (id:string) => {
-    await axios.get(`/api/packages/${id}`);
+    await axios.get(`/api/packages/amount/${id}`);
+
   };
 
 
