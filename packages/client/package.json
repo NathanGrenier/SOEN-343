@@ -14,7 +14,6 @@
     "@google/generative-ai": "^0.21.0",
     "@headlessui/react": "^2.1.10",
     "@heroicons/react": "^2.1.5",
-    "@react-email/components": "^0.0.26",
     "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
     "lucide-react": "^0.454.0",
