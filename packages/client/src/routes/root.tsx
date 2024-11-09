@@ -20,6 +20,11 @@ export default function Root() {
             className="h-full px-6 py-2 text-lg font-semibold text-white hover:bg-blue-700">
             Quote
           </Link>
+          <Link
+            to="/delivery_request"
+            className="h-full px-6 py-2 text-lg font-semibold text-white hover:bg-blue-700">
+            Delivery Request
+          </Link>
         </div>
       </nav>
       <Outlet />
