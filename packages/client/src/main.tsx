@@ -5,6 +5,7 @@ import "./index.css";
 import Root from "./routes/root.tsx";
 import ErrorPage from "./error-page.tsx";
 import Test, { loader as testLoader } from "./routes/test.tsx";
+import Quotation from "./routes/quotation.tsx";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
         path: "test",
         element: <Test />,
         loader: testLoader,
+      },
+      {
+        path: "quotation",
+        element: <Quotation />,
       },
     ],
   },
