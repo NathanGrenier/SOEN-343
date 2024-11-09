@@ -55,7 +55,7 @@
 
 .chat-header {
   background-color: #A9F5A1;
-  color: white;
+  color: #2C2C2C;
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -65,7 +65,7 @@
 .close-button {
   background: none;
   border: none;
-  color: white;
+  color: #2C2C2C;
   font-size: 20px;
   cursor: pointer;
 }
@@ -91,7 +91,7 @@
 
 .message.bot {
   background-color: #A9F5A1;
-  color: white;
+  color:#2C2C2C;
   align-self: flex-start;
 }
 
@@ -116,7 +116,7 @@
 
 .send-button {
   background-color: #A9F5A1;
-  color: white;
+  color: #2C2C2C;
   border: none;
   padding: 10px;
   margin-left: 10px;
