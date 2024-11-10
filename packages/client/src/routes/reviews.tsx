@@ -7,17 +7,7 @@ import Footer from "../Components/Footer";
 
 export default function Reviews() {
   const [showModal, setShowModal] = useState(false);
-  const navigate = useNavigate();
-
-  const navItems = [
-    { name: "Home", path: "/" },
-    { name: "Shipping", path: "/" },
-    { name: "Tracking", path: "/" },
-    { name: "Services", path: "/" },
-    { name: "Support", path: "/" },
-    { name: "Review", path: "/reviews" },
-    { name: "About", path: "/" },
-  ];
+  const navigate = useNavigate();;
 
   const handleSubmit = () => {
     setShowModal(true);
@@ -28,7 +18,7 @@ export default function Reviews() {
 
   return (
     <div className="min-h-screen flex flex-col bg-custom-lightGray">
-      <Navbar navItems={navItems} logo="../public/assets/images/logo.png" />
+      <Navbar />
 
       <div className="flex flex-col items-center mt-24 mb-8">
         <div className="w-full max-w-3xl p-8 bg-white rounded-lg shadow-xl">
