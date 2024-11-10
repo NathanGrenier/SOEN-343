@@ -11,6 +11,7 @@ const App: React.FC = () => {
     { name: "Tracking", path: "/" },
     { name: "Services", path: "/" },
     { name: "Support", path: "/" },
+    { name: "Review", path: "/reviews" },
     { name: "About", path: "/" },
 
     //Drop down use example
@@ -29,11 +30,11 @@ const App: React.FC = () => {
   return (
     <div>
       <Navbar navItems={navItems} logo="../public/assets/images/logo.png" />
-      <div style={{ overflowY: "auto", height: "50vh", marginTop: "4rem" }}>
+      <div style={{ overflowY: "auto", height: "120vh", marginTop: "4rem" }}>
         <MainContent />
         <Outlet />
       </div>
-      <Footer />
+        <Footer />
     </div>
   );
 };
