@@ -8,7 +8,7 @@ export default function Root() {
     return (
         <div className="flex items-center max-w-2xl mx-auto">
             <label className="text-custom-blueishGray text-xl mr-5">Rating:</label>
-            {[...Array(5)].map((_, index) => {
+            {Array.from({ length: 5 }).map((_, index) => {
                 const currentRating = index + 1;
                 return (
                     <label key={index}>
