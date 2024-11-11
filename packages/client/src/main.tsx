@@ -9,6 +9,7 @@ import Test from "./routes/test.tsx";
 import { loader as testLoader, action as testAction } from "./routes/test.ts";
 
 import Email from "./routes/emailsTemplate.tsx";
+import Reviews from "./routes/reviews.tsx";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: "emails",
     element: <Email />,
+  },
+  {
+    path: "/reviews",
+    element: <Reviews />,
   },
   {
     path: "test",
