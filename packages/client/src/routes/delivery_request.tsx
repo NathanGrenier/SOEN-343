@@ -57,7 +57,8 @@ const Delivery: React.FC = () => {
     try {
       const response = await axios.post('/api/packages', { packages: packageData });
       console.log('Package created:', response.data);
-      //REDIRECT TO PAYMENT PAGE WITH calculatedCost AS PARAMETER
+      //YOU CAN ADD THE CODE TO REDIRECT HERE
+      //REDIRECT TO PAYMENT PAGE PASS calculatedCost AS PARAMETER
     } catch (error) {
       console.error('Error creating package:', error);
       setError("Failed to create package in the database.");
@@ -175,7 +176,7 @@ const Delivery: React.FC = () => {
       </div>
 
       <button
-        onClick={() => { calculateShippingCost()}} 
+        onClick={async () => { await calculateShippingCost()}} 
         className="w-full p-3 bg-blue-600 text-white font-bold rounded hover:bg-blue-700"
       >
         Request
