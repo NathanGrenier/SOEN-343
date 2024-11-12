@@ -11,7 +11,7 @@ import { loader as testLoader, action as testAction } from "./routes/test.ts";
 import Email from "./routes/emailsTemplate.tsx";
 import Reviews from "./routes/reviews.tsx";
 
-import PaymentForm from "./Components/Payment/paymentForm.tsx";
+import PaymentForm from "./routes/payment.tsx";
 
 const router = createBrowserRouter([
   {
