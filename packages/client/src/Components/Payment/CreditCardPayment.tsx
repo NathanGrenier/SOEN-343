@@ -28,10 +28,10 @@ export class CreditCardPayment implements PaymentStrategy {
 
     public async processPayment(): Promise<string> {
         if (!this.validateEmail(this.email)) {
-          return Promise.reject("Invalid email");
+          return Promise.reject(new Error("Invalid email"));
         }
         if (!this.isValidExpiryDate(this.expiryDate)) {
-          return Promise.reject("Invalid expiry date");
+          return Promise.reject(new Error("Invalid expiry date"));
         }
         return Promise.resolve("Credit Card Payment processed successfully");
       }

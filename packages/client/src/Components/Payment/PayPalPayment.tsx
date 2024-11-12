@@ -10,7 +10,7 @@ export class PayPalPayment implements PaymentStrategy {
 
   public async processPayment(): Promise<string> {
     if (!this.validateEmail(this.email)) {
-      return Promise.reject("Invalid email");
+      return Promise.reject(new Error ("Invalid email"));
     }
     return Promise.resolve("PayPal Payment processed successfully");
   }

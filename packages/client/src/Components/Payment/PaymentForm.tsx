@@ -24,6 +24,7 @@ const PaymentForm: React.FC = () => {
     const [cvv, setCvv] = useState("");
     const [cvvVisible, setCvvVisible] = useState(false);
     const [message, setMessage] = useState("");
+    const [isSuccess, setIsSuccess] = useState<boolean>(false);
 
     //cvv functions
     const toggleCvvVisibility = () => {
@@ -65,6 +66,7 @@ const PaymentForm: React.FC = () => {
             const fetchSuggestions = async () => {
                 //no more than one request/second allowed. Open source api with no api key necessary for it to work
                 const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(addressInput)}`);
+
                 const data = await response.json();
                 setAddressSuggestions(data);
             };
@@ -101,7 +103,27 @@ const PaymentForm: React.FC = () => {
     } catch (error) {
       setMessage(error as string);
     }
+
+    try {
+      const successMessage = await paymentProcessor.processPayment();
+      setMessage(successMessage);
+      setIsSuccess(true); // Set the success flag to true
+  } catch (error) {
+      setMessage((error as Error).message);
+      setIsSuccess(false);
+  }
   };
+
+  if (isSuccess) {
+    return (
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: 'white' }}>
+            <div style={{ textAlign: 'center' }}>
+                <h1 style={{ color: 'green' }}>✔️ Success!</h1>
+                <p style={{ fontSize: '20px', color: 'green' }}>Your payment has been successfully processed.</p>
+            </div>
+        </div>
+    );
+}
 
   return (
     <div> 

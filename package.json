@@ -36,6 +36,7 @@
     "react-email": "^3.0.1",
     "resend": "^4.0.1-alpha.0",
     "sharp": "^0.33.5",
+    "soen-343": "file:",
     "vite": "^5.4.9"
   }
 }
