@@ -26,12 +26,28 @@ export class CreditCardPayment implements PaymentStrategy {
         return pattern.test(email);
       }
 
+      private validateCardNumber(cardNumber: string): boolean {
+        const regex = /^[0-9]{16}$/;
+        return regex.test(cardNumber);
+      }
+
+      private validateCvv(cvv: string): boolean {
+          const regex = /^[0-9]{3}$/;
+          return regex.test(cvv);
+      }
+
     public async processPayment(): Promise<string> {
         if (!this.validateEmail(this.email)) {
           return Promise.reject(new Error("Invalid email"));
         }
         if (!this.isValidExpiryDate(this.expiryDate)) {
           return Promise.reject(new Error("Invalid expiry date"));
+        }
+        if (!this.validateCardNumber(this.cardNumber)) {
+          return Promise.reject(new Error("Invalid card number"));
+        }
+        if (!this.validateCvv(this.cvv)) {
+            return Promise.reject(new Error("Invalid CVV"));
         }
         return Promise.resolve("Credit Card Payment processed successfully");
       }

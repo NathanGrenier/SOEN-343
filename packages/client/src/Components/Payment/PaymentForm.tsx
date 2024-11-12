@@ -66,12 +66,14 @@ const PaymentForm: React.FC = () => {
             const fetchSuggestions = async () => {
                 //no more than one request/second allowed. Open source api with no api key necessary for it to work
                 const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(addressInput)}`);
-
-                const data = await response.json();
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                const data: Address[] = await response.json();
                 setAddressSuggestions(data);
             };
 
-            fetchSuggestions();
+            fetchSuggestions().catch(error => {
+              console.error("Failed to fetch address suggestions:", error);
+          });
         } else {
             setAddressSuggestions([]);
         }
@@ -128,7 +130,7 @@ const PaymentForm: React.FC = () => {
   return (
     <div> 
        <h1 className="text-3xl font-bold text-justify text-black-600 ms-4 mb-4">Payment Checkout</h1>
-         <form onSubmit={handleSubmit} className="bg-[#d4d4d8] max-w-[400px] mx-auto my-[80px] h-auto pt-[70px] p-[35px] rounded-[5px] relative">
+         <form onSubmit={() => handleSubmit} className="bg-[#d4d4d8] max-w-[400px] mx-auto my-[80px] h-auto pt-[70px] p-[35px] rounded-[5px] relative">
              <h2 className="block text-lg font-medium text-gray-700 mt-0 mb-5">Enter Payment Information</h2> 
             <div className="form-group my-3">
                 <label className="block text-sm font-medium text-gray-700 mb-2">Email:</label>
