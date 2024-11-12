@@ -9,23 +9,36 @@
     "start": "node ./dist/server.js",
     "dev": "nodemon --config nodemon.json",
     "type-check": "tsc --noEmit",
-    "test": "npm run type-check"
+    "test": "npm run type-check",
+    "migrate:up": "docker compose exec server sh -c 'npx node-pg-migrate up'",
+    "migrate:down": "docker compose exec server sh -c 'npx node-pg-migrate down'",
+    "migrate:redo": "docker compose exec server sh -c 'npx node-pg-migrate redo'",
+    "migrate:create": "node-pg-migrate create --migration-file-language sql"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@react-email/components": "^0.0.27",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
+    "server": "file:",
+    "express-async-handler": "^1.2.0",
     "mssql": "^11.0.1",
-    "server": "file:"
+    "node-pg-migrate": "^7.7.1",
+    "pg": "^8.13.1",
+    "resend": "^4.0.1-alpha.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/mssql": "^9.1.5",
-    "@types/node": "^22.7.6",
+    "@types/node": "^22.8.6",
+    "@types/pg": "^8.11.10",
+    "@types/react": "^18.3.12",
+    "dotenv-cli": "^7.4.2",
     "nodemon": "^3.1.7",
+    "ts-node": "^10.9.2",
     "typescript": "^5.6.3"
   }
 }

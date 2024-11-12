@@ -44,19 +44,19 @@ Do install all dependencies in the project, use the install script `./install-al
 ### Environment Variables and Secrets
 
 Create a `.env` file and add these environment variables:
-| Name             | Value                 |
-| ---------------- | --------------------- |
-| NODE_ENV         | development           |
-| POSTGRES_HOST    | db                    |
-| POSTGRES_USER    | postgres              |
-| POSTGRES_DB      | app                   |
-| POSTGRES_PORT    | 5432                  |
-| POSTGRES_SSLMODE | disable               |
-| PORT             | 3001                  |
-| API_PATH         | /api                  |
-| VITE_SERVER_URL  | http://localhost:3001 |
-
-Generate a safe password for your database using the following command:  `mkdir -p db-secrets && openssl rand -base64 32 > db-secrets/password.txt`
+| Name              | Value                                                                                             |
+| ----------------- | ------------------------------------------------------------------------------------------------- |
+| NODE_ENV          | development                                                                                       |
+| POSTGRES_DB       | app                                                                                               |
+| POSTGRES_USER     | postgres                                                                                          |
+| POSTGRES_PASSWORD | changeme                                                                                          |
+| POSTGRES_HOST     | db                                                                                                |
+| POSTGRES_PORT     | 5432                                                                                              |
+| POSTGRES_SSLMODE  | disable                                                                                           |
+| POSTGRES_URL      | postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB} |
+| PORT              | 3001                                                                                              |
+| API_PATH          | /api                                                                                              |
+| VITE_SERVER_URL   | http://localhost:3001                                                                             |
 
 ### Using Docker Compose (Dev Environment)
 

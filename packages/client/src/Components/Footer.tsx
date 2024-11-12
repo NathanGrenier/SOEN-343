@@ -1,8 +1,6 @@
-import React from "react";
-
-const Footer: React.FC = () => {
+export default function Footer() {
   return (
-    <footer className="relative border-lightGray top-[100vh] left-0 w-full border-t bg-white">
+    <footer className="border-custom-lightGray bg-custom-blueishGray relative left-0 w-full border-t bg-white">
       <div className="mx-auto max-w-screen-xl px-6 py-2">
         <div className="flex flex-wrap items-start justify-between">
           <div className="mb-4 flex space-x-4">
@@ -16,7 +14,7 @@ const Footer: React.FC = () => {
               {/* Instagram */}
               <a
                 href="#"
-                className="hover:text-mainGreen flex items-center text-gray-500">
+                className="hover:text-custom-mainGreen flex items-center text-gray-500">
                 <svg
                   className="mr-1 h-5 w-5"
                   xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +26,7 @@ const Footer: React.FC = () => {
               {/* Youtube */}
               <a
                 href="#"
-                className="hover:text-mainGreen flex items-center text-gray-500">
+                className="hover:text-custom-mainGreen flex items-center text-gray-500">
                 <svg
                   className="mr-1 h-5 w-5"
                   xmlns="http://www.w3.org/2000/svg"
@@ -40,7 +38,7 @@ const Footer: React.FC = () => {
               {/* LinkedIn */}
               <a
                 href="#"
-                className="hover:text-mainGreen flex items-center text-gray-500">
+                className="hover:text-custom-mainGreen flex items-center text-gray-500">
                 <svg
                   className="mr-1 h-5 w-5"
                   viewBox="0 0 24 24"
@@ -55,10 +53,10 @@ const Footer: React.FC = () => {
             <div>
               <h5 className="font-semibold">Our Company</h5>
               <ul className="mt-2 space-y-1">
-                <li className="text-gray hover:text-mainGreen">
+                <li className="text-custom-gray hover:text-custom-mainGreen">
                   About SwiftSend
                 </li>
-                <li className="text-gray hover:text-mainGreen">
+                <li className="text-custom-gray hover:text-custom-mainGreen">
                   Why Choose SwiftSend
                 </li>
               </ul>
@@ -66,25 +64,34 @@ const Footer: React.FC = () => {
             <div>
               <h5 className="font-semibold">Support</h5>
               <ul className="mt-2 space-y-1">
-                <li className="text-gray hover:text-mainGreen">Contact Us</li>
-                <li className="text-gray hover:text-mainGreen">Chat Bot</li>
+                <li className="text-custom-gray hover:text-custom-mainGreen">
+                  Contact Us
+                </li>
+                <li className="text-custom-gray hover:text-custom-mainGreen">
+                  Chat Bot
+                </li>
               </ul>
             </div>
             <div>
               <h5 className="font-semibold">Quick Links</h5>
               <ul className="mt-2 space-y-1">
-                <li className="text-gray hover:text-mainGreen">Shipping</li>
-                <li className="text-gray hover:text-mainGreen">Tracking</li>
-                <li className="text-gray hover:text-mainGreen">Services</li>
+                <li className="text-custom-gray hover:text-custom-mainGreen">
+                  Shipping
+                </li>
+                <li className="text-custom-gray hover:text-custom-mainGreen">
+                  Tracking
+                </li>
+                <li className="text-custom-gray hover:text-custom-mainGreen">
+                  Services
+                </li>
               </ul>
             </div>
           </div>
         </div>
-        <div className="text-gray mt-6 text-left">
+        <div className="text-custom-gray mt-6 text-left">
           <p>© 2024 SwiftSend. All rights reserved</p>
         </div>
       </div>
     </footer>
   );
-};
-export default Footer;
+}

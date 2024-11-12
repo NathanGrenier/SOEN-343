@@ -32,6 +32,7 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       "constructor-super": "error",
+      "@typescript-eslint/only-throw-error": "off",
     },
   },
 );

@@ -1,10 +1,14 @@
 import sql from 'mssql';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 
 const dbConfig = {
   server: "sql.bsite.net\\MSSQL2016",
   database: "swiftsend_",
-  user: "swiftsend_",
-  password: "swiftsend2024",
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
   port: 1433,
   options: {
     trustedConnection: true,

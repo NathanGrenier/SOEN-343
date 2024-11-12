@@ -13,7 +13,9 @@ import {
     Text,
   } from "@react-email/components";
   import * as React from "react";
-  import { DeliveryEmailProps } from "./deliveryInterface";
+  import { DeliveryEmailProps } from "./deliveryInterface.js";
+  
+
   
   export const DeliveryConfirmationEmail: React.FC<DeliveryEmailProps> = ({ delivery }) => (
     <Html>
@@ -41,19 +43,18 @@ import {
               alt="SwiftSend"
               style={{ margin: "auto" }}
             /> */}
-            <Heading style={global.heading}>Confimation</Heading>
+            <Heading style={global.heading}>It's on it's way!</Heading>
             <Text style={global.text}>
-              You delivery request has been confirmed! Use the link above to track its progress.
+            Good news! Your delivery has been dispatched and is currently on its way.
             </Text>
             <Text style={{ ...global.text, marginTop: 24 }}>
-              We've also charged your payment method for the cost of your order
-              and will be removing any authorization holds. For payment details,
-              please visit our 'Tracking' page.<br />
+            You can track your order in real time by clicking the link above. 
+            For any updates or questions, feel free to contact us.<br />
 
-              We appreciate your trust in our service!<br /><br />
+            We appreciate your trust in our service!<br /><br />
               
-              Best regards,<br />
-              Swift Send Delivery Team
+            Best regards,<br />
+            Swift Send Delivery Team
             </Text>
           </Section>
           <Hr style={global.hr} />
@@ -69,7 +70,7 @@ import {
           </Section>
           <Hr style={global.hr} />
           <Section style={global.defaultPadding}>
-            <Row style={{ display: "inline-flex", marginBottom: 40 }}>
+            <Row style={{ display: "inline-flex", marginBottom: 40}}>
               <Column style={{ width: "170px" }}>
                 <Text style={global.paragraphWithBold}>Tracking Number</Text>
                 <Text style={track.number}>{delivery.trackId}</Text>
@@ -113,7 +114,7 @@ import {
                 <Row>
                   <Column style={{ width: "16px" }}>
                     {/* <Img
-                      src={'./logo.png'}
+                      src={'../assets/logo.png'}
                       width="16px"
                       height="26px"
                       style={{ paddingRight: "14px" }}
@@ -251,7 +252,6 @@ import {
     fontSize: "15px",
     fontWeight: "bold",
   };
-
   
   const menu = {
     container: {
@@ -283,7 +283,7 @@ import {
       paddingBottom: "22px",
     },
   };
-
+  
   
   const footer = {
     policy: {
