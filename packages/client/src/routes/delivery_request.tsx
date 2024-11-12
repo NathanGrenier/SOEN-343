@@ -34,8 +34,8 @@ const Delivery: React.FC = () => {
     const shippingFee = selectedMethod ? selectedMethod.getFee() : shippingMethods[0].getFee();
     const calculatedCost = calculator.calculate(weight, isExpress, shippingFee);
     setCost(calculatedCost);
-    let currentDate = new Date(Date.now()).toISOString().split("T")[0];
-    let shippingDate = new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString().split("T")[0];
+    const currentDate = new Date(Date.now()).toISOString().split("T")[0];
+    const shippingDate = new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString().split("T")[0];
     console.log(currentDate);
     console.log(shippingDate);
     // Prepare package data
@@ -175,7 +175,7 @@ const Delivery: React.FC = () => {
       </div>
 
       <button
-        onClick={calculateShippingCost}
+        onClick={() => { calculateShippingCost()}} 
         className="w-full p-3 bg-blue-600 text-white font-bold rounded hover:bg-blue-700"
       >
         Request
