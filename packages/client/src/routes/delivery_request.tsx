@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { ShippingCostCalculator } from "../utils/ShippingCostCalculator";
 import { insideCanadaStrategy } from "../utils/insideCanadaStrategy";
 import { outsideCanadaStrategy } from "../utils/outsideCanadaStrategy";
@@ -14,15 +15,53 @@ const Delivery: React.FC = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [selectedShippingMethod, setSelectedShippingMethod] = useState("");
+  const [selectedShippingMethod, setSelectedShippingMethod] = useState(getShippingMethods()[0].getName());
+  const [error, setError] = useState<string | null>(null); // Error state
 
-  const calculateShippingCost = () => {
+  const calculateShippingCost = async () => {
+    // Check if any required field is empty
+    if (!firstName || !lastName || !email || !departureAddress || !address || !selectedShippingMethod || weight <= 0) {
+      setError("Please fill in all the information.");
+      return;
+    }
+
+    setError(null); // Clear error if all fields are filled
+
+    // Calculate shipping cost
     const strategy = destination === "inside" ? insideCanadaStrategy : outsideCanadaStrategy;
     const calculator = new ShippingCostCalculator(strategy);
-    // Find the selected shipping method and get its fee
     const selectedMethod = shippingMethods.find((method) => method.getName() === selectedShippingMethod);
     const shippingFee = selectedMethod ? selectedMethod.getFee() : shippingMethods[0].getFee();
-    setCost(calculator.calculate(weight, isExpress, shippingFee));
+    const calculatedCost = calculator.calculate(weight, isExpress, shippingFee);
+    setCost(calculatedCost);
+    let currentDate = new Date(Date.now()).toISOString().split("T")[0];
+    let shippingDate = new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString().split("T")[0];
+    console.log(currentDate);
+    console.log(shippingDate);
+    // Prepare package data
+    const packageData = {
+      dropOffName: firstName,
+      dropOffLastName: lastName,
+      dropOffAddress: address,
+      dropOffDate: shippingDate,
+      pickUpName: "name", 
+      pickUpLastName: "sirname", 
+      pickUpAddress: departureAddress,
+      pickUpDate: currentDate,
+      amount: calculatedCost.toFixed(2),
+      email: email,
+      status: "pending"
+    };
+
+    // Send data to the backend
+    try {
+      const response = await axios.post('/api/packages', { packages: packageData });
+      console.log('Package created:', response.data);
+      //REDIRECT TO PAYMENT PAGE WITH calculatedCost AS PARAMETER
+    } catch (error) {
+      console.error('Error creating package:', error);
+      setError("Failed to create package in the database.");
+    }
   };
 
   const shippingMethods = getShippingMethods();
@@ -31,6 +70,7 @@ const Delivery: React.FC = () => {
     <div className="p-4 max-w-md mx-auto bg-white shadow-lg rounded-lg">
       <h2 className="text-2xl font-bold mb-4">Request Delivery</h2>
 
+      {/* Input fields go here, unchanged */}
       <div className="mb-4">
         <label className="block text-lg font-semibold">First Name:</label>
         <input
@@ -140,6 +180,12 @@ const Delivery: React.FC = () => {
       >
         Request
       </button>
+
+      {error && (
+        <div className="mt-4 text-red-600 font-semibold">
+          {error}
+        </div>
+      )}
 
       {cost !== null && (
         <div className="mt-4 p-3 bg-green-100 text-green-800 font-semibold rounded">

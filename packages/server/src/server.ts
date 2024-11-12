@@ -5,9 +5,12 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { makeAPIPath } from "./util.js";
 
-import rootRouter from "./routes/root.js";
 import healthRouter from "./health.js";
-import testRouter from "./routes/test.js";
+import testDbRouter from "./routes/dbTest.js";
+import dbRouter from "./routes/pakages.js";
+import emailsRouter from "./routes/emails.js"
+
+const db = null; // Replace with the database singleton
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -16,7 +19,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // app.use(makeAPIPath(""), rootRouter);
 app.use(makeAPIPath("/health"), healthRouter);
-app.use(makeAPIPath("/test"), testRouter);
+app.use(makeAPIPath("/testdb"), testDbRouter);
+app.use(makeAPIPath("/"), emailsRouter);
+app.use(makeAPIPath("/packages"), dbRouter);
 
 // Get the directory name using import.meta.url
 const __filename = fileURLToPath(import.meta.url);
@@ -34,6 +39,35 @@ if (process.env.NODE_ENV === "production") {
   app.use(cors());
 }
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+// Graceful shutdown
+process.on("SIGTERM", gracefulShutdown);
+process.on("SIGINT", gracefulShutdown);
+
+function gracefulShutdown() {
+  console.log("Received shutdown signal, starting graceful shutdown...");
+
+  // Stop accepting new requests
+  server.close(() => {
+    console.log("Server closed, no longer accepting connections");
+
+    // Close database connections
+    if (db) {
+      console.log("Closing database connections...");
+      // Handle closing database connections
+    } else {
+      process.exit(0);
+    }
+  });
+
+  // Force shutdown if graceful shutdown fails
+  setTimeout(() => {
+    console.error(
+      "Could not close connections in time, forcefully shutting down",
+    );
+    process.exit(1);
+  }, 30000); // 30 seconds timeout
+}
