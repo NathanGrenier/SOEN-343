@@ -3,10 +3,10 @@ import { Outlet } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import MainContent from "../Components/MainContent";
 import Footer from "../Components/Footer";
-
 const App: React.FC = () => {
   const navItems = [
     { name: "Home", path: "/test" },
+    { name: "Quotation", path: "/quotation" },
     { name: "Shipping", path: "/" },
     { name: "Tracking", path: "/" },
     { name: "Services", path: "/" },
