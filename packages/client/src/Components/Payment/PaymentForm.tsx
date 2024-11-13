@@ -11,6 +11,11 @@ interface Address {
     };
 }
 
+// interface PaymentFormProps {
+//   totalPrice: number;
+// }
+
+//const PaymentForm: React.FC<PaymentFormProps> = ({ totalPrice }) => {
 const PaymentForm: React.FC = () => {
     const [paymentType, setPaymentType] = useState<"creditCard" | "paypal">("creditCard");
     const [email, setEmail] = useState("");
@@ -26,12 +31,12 @@ const PaymentForm: React.FC = () => {
     const [message, setMessage] = useState("");
     const [isSuccess, setIsSuccess] = useState<boolean>(false);
 
-    //cvv functions
+    // cvv functions
     const toggleCvvVisibility = () => {
         setCvvVisible(!cvvVisible);
     };
 
-    //expiry date functions
+    // expiry date functions
     const expiry_format = (value: string) => {
         const expdate = value;
         const expDateFormatter =
@@ -41,7 +46,7 @@ const PaymentForm: React.FC = () => {
         return expDateFormatter;
     };
 
-  // Format credit card number as "#### #### #### ####"
+  // format credit card number as "#### #### #### ####"
   const creditCard_format = (value: string) => {
     const cc = value.replace(/[^0-9]/gi, "").substring(0, 16);
     const creditCardFormatter = [];
@@ -51,7 +56,7 @@ const PaymentForm: React.FC = () => {
     return creditCardFormatter.join(" ");
   };
 
-    //This function is to allow users to enter a specific set of keys only (makes error checking simpler)
+    // this function is to allow users to enter a specific set of keys only (makes error checking simpler)
     const isAllowedKey = (key: string) => {
         return (
             key === 'Backspace' || 
@@ -109,7 +114,7 @@ const PaymentForm: React.FC = () => {
     try {
       const successMessage = await paymentProcessor.processPayment();
       setMessage(successMessage);
-      setIsSuccess(true); // Set the success flag to true
+      setIsSuccess(true);
   } catch (error) {
       setMessage((error as Error).message);
       setIsSuccess(false);
@@ -128,10 +133,10 @@ const PaymentForm: React.FC = () => {
 }
 
   return (
-    <div> 
-       <h1 className="text-3xl font-bold text-justify text-black-600 ms-4 mb-4">Payment Checkout</h1>
-         <form onSubmit={() => handleSubmit} className="bg-[#d4d4d8] max-w-[400px] mx-auto my-[80px] h-auto pt-[70px] p-[35px] rounded-[5px] relative">
-             <h2 className="block text-lg font-medium text-gray-700 mt-0 mb-5">Enter Payment Information</h2> 
+    <><h1 className="text-3xl font-bold text-justify justidy-left text-black-600 ms-4 mb-4">Payment Checkout</h1>
+    <div className="flex justify-center ml-60">
+         <form onSubmit={() => handleSubmit} className="bg-[#d4d4d8] float-left max-w-[400px] h-auto pt-[70px] p-[35px] rounded-[5px] relative">
+             <h2 className="text-xl font-semibold mb-4">Enter Payment Information</h2> 
             <div className="form-group my-3">
                 <label className="block text-sm font-medium text-gray-700 mb-2">Email:</label>
                 <div className="relative">
@@ -148,6 +153,8 @@ const PaymentForm: React.FC = () => {
                 </svg>
                 </div>
             </div>
+
+
         <div className="block text-sm font-medium text-gray-700 mb-2">
           <label >Payment Method:</label>
           <select
@@ -267,7 +274,7 @@ const PaymentForm: React.FC = () => {
         )}
 
          <br></br>
-             <h2 className="block text-lg font-medium text-gray-700 mb-2">Enter Billing Information</h2>
+             <h2 className="text-xl font-semibold mb-4">Enter Billing Information</h2>
 
              <div className="form-group my-3">
                  <label className="block text-sm font-medium text-gray-700 mb-2">Billing Address:</label>
@@ -315,7 +322,6 @@ const PaymentForm: React.FC = () => {
                 />
                 </div>
             </div>
-
         <br></br>
             <button type = "submit" className="w-full py-2 bg-blue-500 text-white font-semibold rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition">
              Submit Payment </button>
@@ -324,7 +330,15 @@ const PaymentForm: React.FC = () => {
             
              {message && <div className="text-red-500 text-xs italic">{message}</div>}
       </form>
+      <br></br>
+      <div className="bg-gray-100 p-10 ml-5 float-right rounded-md shadow-md w-[300px] h-[200px]">
+                <br></br>
+                <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
+                <p className="text-gray-700 text-lg">Total Price:</p>
+                {/* <p className="text-2xl font-bold text-green-600">${totalPrice.toFixed(2)}</p> mx-auto my-[80px] */}
+            </div>
     </div>
+    </>
   );
 };
 
