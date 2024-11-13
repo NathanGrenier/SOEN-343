@@ -4,41 +4,41 @@ import { BaseEmailTemplate, styles as s } from "./baseEmailTemplate.js";
 import { Text, Hr, Row, Column, Section } from "@react-email/components";
 
 export const DeliveryPaymentEmail: React.FC<DeliveryEmailProps> = ({ delivery }) => {
-  const mainContent = (
-    <>
-      <Section style={styles.trackingSection}>
-        <Row>
-          <Column align="left">
-            <Text style={styles.boldText}>Tracking Number</Text>
-            <Text style={styles.trackingNumber}>{delivery.trackId}</Text>
-          </Column>
-        </Row>
-      </Section>
-      <Hr style={s.global.hr} />
-      <Section style={styles.messageSection}>
-        <Text style={styles.heading}>Payment Received!</Text>
-        <Text style={styles.text}>
-          Amount Charged: &nbsp;{delivery.amount}<br />
-          Tracking Number: &nbsp;{delivery.trackId}<br /><br />
-
-          We appreciate your trust in our service!<br /><br />
-              
-          Best regards,<br/>
-          Swift Send Delivery Team
-        </Text>
-      </Section>
-      <Hr style={s.global.hr} />
-      <Section>
-        <Text style={styles.addressTitle}>Shipping to: {delivery.dropOffFirstname} {delivery.dropOffLastname}</Text>
-        <Text>{delivery.dropOffAddress}</Text>
-        <Text style={styles.addressTitle}>From: {delivery.pickUpFirstname} {delivery.pickUpLastname}</Text>
-        <Text>{delivery.pickUpAddress}</Text>
-      </Section>
-    </>
-  );
-
-  return <BaseEmailTemplate mainContent={mainContent} deliveryContent={defaultDeliveryContent(delivery)} footerContent={null} delivery={delivery} preview={"Payment Received for Your Delivery"}/>;
+  return <BaseEmailTemplate mainContent={mainContent(delivery)} deliveryContent={defaultDeliveryContent(delivery)} footerContent={null} delivery={delivery} preview={"Payment Received for Your Delivery"}/>;
 };
+
+const mainContent = (delivery: DeliveryEmailProps["delivery"]) => (
+  <>
+    <Section style={styles.trackingSection}>
+      <Row>
+        <Column align="left">
+          <Text style={styles.boldText}>Tracking Number</Text>
+          <Text style={styles.trackingNumber}>{delivery.trackId}</Text>
+        </Column>
+      </Row>
+    </Section>
+    <Hr style={s.global.hr} />
+    <Section style={styles.messageSection}>
+      <Text style={styles.heading}>Payment Received!</Text>
+      <Text style={styles.text}>
+        Amount Charged: &nbsp;{delivery.amount}<br />
+        Tracking Number: &nbsp;{delivery.trackId}<br /><br />
+
+        We appreciate your trust in our service!<br /><br />
+            
+        Best regards,<br/>
+        Swift Send Delivery Team
+      </Text>
+    </Section>
+    <Hr style={s.global.hr} />
+    <Section>
+      <Text style={styles.addressTitle}>Shipping to: {delivery.dropOffFirstname} {delivery.dropOffLastname}</Text>
+      <Text>{delivery.dropOffAddress}</Text>
+      <Text style={styles.addressTitle}>From: {delivery.pickUpFirstname} {delivery.pickUpLastname}</Text>
+      <Text>{delivery.pickUpAddress}</Text>
+    </Section>
+  </>
+);
 
 const defaultDeliveryContent = (delivery:DeliveryEmailProps["delivery"]) => (
   <Section style={s.global.defaultPadding}>
