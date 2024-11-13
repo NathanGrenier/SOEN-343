@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { ShippingCostCalculator } from "../utils/ShippingCostCalculator";
 import { insideCanadaStrategy } from "../utils/insideCanadaStrategy";
 import { outsideCanadaStrategy } from "../utils/outsideCanadaStrategy";
 import { getShippingMethods } from "../utils/ShippingMethods";
+import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
+
 
 const Delivery: React.FC = () => {
+  const navigate = useNavigate();;
   const [destination, setDestination] = useState("inside");
   const [weight, setWeight] = useState(0);
   const [isExpress, setIsExpress] = useState(false);
@@ -56,9 +61,11 @@ const Delivery: React.FC = () => {
     // Send data to the backend
     try {
       const response = await axios.post('/api/packages', { packages: packageData });
+      const { id } = response.data; // Retrieve the ID from the response
       console.log('Package created:', response.data);
-      //YOU CAN ADD THE CODE TO REDIRECT HERE
+      console.log(id);
       //REDIRECT TO PAYMENT PAGE PASS calculatedCost AS PARAMETER
+      navigate('/payment', {state: {calculatedCost: calculatedCost.toFixed(2), id: id}});
     } catch (error) {
       console.error('Error creating package:', error);
       setError("Failed to create package in the database.");
@@ -69,6 +76,7 @@ const Delivery: React.FC = () => {
 
   return (
     <div className="p-4 max-w-md mx-auto bg-white shadow-lg rounded-lg">
+      <Navbar />
       <h2 className="text-2xl font-bold mb-4">Request Delivery</h2>
 
       {/* Input fields go here, unchanged */}
@@ -195,6 +203,7 @@ const Delivery: React.FC = () => {
           Estimated Shipping Cost: ${cost.toFixed(2)}
         </div>
       )}
+      <Footer />
     </div>
   );
 };

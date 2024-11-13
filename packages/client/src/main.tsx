@@ -9,10 +9,11 @@ import Test from "./routes/test.tsx";
 import { loader as testLoader, action as testAction } from "./routes/test.ts";
 
 import Email from "./routes/emailsTemplate.tsx";
-import Delivery from "./routes/delivery_request.tsx";
 import Reviews from "./routes/reviews.tsx";
 
 import PaymentForm from "./routes/payment.tsx";
+import Quotation from "./routes/quotation.tsx";
+import Delivery from "./routes/delivery_request.tsx";
 
 const router = createBrowserRouter([
   {
@@ -25,12 +26,12 @@ const router = createBrowserRouter([
     element: <Email />,
   },
   {
-    path: "delivery_request",
-      element: <Delivery />,
-  },
-  {
     path: "/reviews",
     element: <Reviews />,
+  },
+  {
+    path: "/request_delivery",
+    element: <Delivery />,
   },
   {
     path: "test",
@@ -42,6 +43,17 @@ const router = createBrowserRouter([
   {
     path: "payment",
     element: <PaymentForm />,
+    children: [
+      {
+        path: "test",
+        element: <Test />,
+        loader: testLoader,
+      },
+      {
+        path: "quotation",
+        element: <Quotation />,
+      },
+    ],
   },
 ]);
 

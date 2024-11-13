@@ -24,11 +24,14 @@ router
                 ${packages.amount},                 
                 '${packages.email}',                
                 '${packages.status}'                
-            )
+            );
+            SELECT SCOPE_IDENTITY() AS LatestID;
         `;
     try {
         const results = await pool.query(query);
-        res.status(200).json({ message: 'Package successfully inserted' });
+        res.status(200).json({ message: 'Package successfully inserted', 
+            id: results.recordset[0].LatestID
+        });
         
     }catch(err) {
         console.error('Error fetching data:', err);
