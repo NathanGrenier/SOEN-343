@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import MainContent from "../Components/MainContent";
 import Footer from "../Components/Footer";
+
 const App: React.FC = () => {
   return (
     <div>
