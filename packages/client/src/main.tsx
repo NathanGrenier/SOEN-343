@@ -9,6 +9,9 @@ import Test from "./routes/test.tsx";
 import { loader as testLoader, action as testAction } from "./routes/test.ts";
 
 import Email from "./routes/emailsTemplate.tsx";
+import Reviews from "./routes/reviews.tsx";
+
+import PaymentForm from "./routes/payment.tsx";
 
 const router = createBrowserRouter([
   {
@@ -21,11 +24,19 @@ const router = createBrowserRouter([
     element: <Email />,
   },
   {
+    path: "/reviews",
+    element: <Reviews />,
+  },
+  {
     path: "test",
     element: <Test />,
     loader: testLoader,
     action: testAction,
     children: [{ path: ":id", action: testAction }],
+  },
+  {
+    path: "payment",
+    element: <PaymentForm />,
   },
 ]);
 

@@ -1,17 +1,15 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import LiveChatPopUp from "../Components/LiveChatPopUp";
 import Navbar from "../Components/Navbar";
-import MainContent from "../Components/MainContent";
 import Footer from "../Components/Footer";
+import PaymentForm from "../Components/Payment/PaymentForm";
 
 const App: React.FC = () => {
   return (
     <div>
       <Navbar />
-      <div style={{ overflowY: "auto", height: "170vh", marginTop: "4rem" }}>
-        <MainContent />
-        <LiveChatPopUp />
+      <div style={{ overflowY: "auto", marginTop: "4rem" }}>
+        <PaymentForm />
         <Outlet />
       </div>
         <Footer />
