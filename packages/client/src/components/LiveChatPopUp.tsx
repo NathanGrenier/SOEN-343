@@ -12,7 +12,7 @@ const LiveChatPopUp = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [userInput, setUserInput] = useState("");
   const [loading, setLoading] = useState(false);
-  const API_KEY = import.meta.env.VITE_API_KEY;
+  const API_KEY = import.meta.env.VITE_API_KEY as string;
 
   const toggle = () => setIsToggled(!isToggled);
 
@@ -87,13 +87,13 @@ const LiveChatPopUp = () => {
               onKeyPress={(e) => {
                 if (e.key === 'Enter') {
                   e.preventDefault(); // Prevents newline in input
-                  sendMessage();
+                  void sendMessage();
                 }
               }}
             />
             <button
               className="send-button"
-              onClick={sendMessage}
+              onClick={ void sendMessage}
               disabled={loading}>
               {loading ? "Sending..." : "Send"}
             </button>
