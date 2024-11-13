@@ -2,9 +2,9 @@
 import express, {Router} from "express";
 import asyncHandler from "express-async-handler";
 import { Resend } from "resend";
-import DeliveryConfirmationEmail from '../emailTemplates/deliveryConfirmationTemplate.js';
-import DeliveryShippedEmail from '../emailTemplates/deliveryShippedTemplate.js';
-import DeliveryPaymentEmail from '../emailTemplates/deliveryPaymentTemplate.js';
+import {DeliveryConfirmationEmail} from '../emailTemplates/deliveryConfirmationTemplate.js';
+import {DeliveryShippedEmail} from '../emailTemplates/deliveryShippedTemplate.js';
+import {DeliveryPaymentEmail} from '../emailTemplates/deliveryPaymentTemplate.js';
 import { DeliveryEmailProps } from "../emailTemplates/deliveryInterface.js";
 import pool from '../database/db.js';
 import dotenv from 'dotenv';
