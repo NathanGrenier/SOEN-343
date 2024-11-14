@@ -75,8 +75,10 @@ const Delivery: React.FC = () => {
   const shippingMethods = getShippingMethods();
 
   return (
+    <div>
+    <Navbar />
+
     <div className="p-4 max-w-md mx-auto bg-white shadow-lg rounded-lg">
-      <Navbar />
       <h2 className="text-2xl font-bold mb-4">Request Delivery</h2>
 
       {/* Input fields go here, unchanged */}
@@ -203,7 +205,9 @@ const Delivery: React.FC = () => {
           Estimated Shipping Cost: ${cost.toFixed(2)}
         </div>
       )}
-      <Footer />
+      
+    </div>
+    <Footer />
     </div>
   );
 };
