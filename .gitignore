@@ -27,3 +27,4 @@ dist-ssr
 ### End of Vite
 .env
 db-secrets/
+

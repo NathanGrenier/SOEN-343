@@ -21,7 +21,7 @@ const mainContent = (delivery: DeliveryEmailProps["delivery"]) => (
     <Section style={styles.messageSection}>
       <Text style={styles.heading}>Confirmation</Text>
       <Text style={styles.text}>
-        You delivery request has been confimred!<br/>
+        You delivery has reached his final destination!<br/>
 
         We appreciate your trust in our service!<br /><br />
               
@@ -40,7 +40,7 @@ const mainContent = (delivery: DeliveryEmailProps["delivery"]) => (
 );
 const deliveryContent = () => (
   <Section style={s.global.defaultPadding}>
-    <Text style={styles.text}> The estimated delivery date will be sent to you when the order is shipped!</Text>
+    <Text style={styles.text}> Your delivery was delivered today!</Text>
   </Section>
 
  );

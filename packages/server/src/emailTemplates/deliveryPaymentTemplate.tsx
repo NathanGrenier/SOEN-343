@@ -21,6 +21,8 @@ const mainContent = (delivery: DeliveryEmailProps["delivery"]) => (
     <Section style={styles.messageSection}>
       <Text style={styles.heading}>Payment Received!</Text>
       <Text style={styles.text}>
+        Thank you for your payment!<br />
+        Your delivery will be shipped soon! <br /><br />
         Amount Charged: &nbsp;{delivery.amount}<br />
         Tracking Number: &nbsp;{delivery.trackId}<br /><br />
 
