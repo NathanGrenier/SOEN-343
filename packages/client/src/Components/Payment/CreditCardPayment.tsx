@@ -26,12 +26,17 @@ export class CreditCardPayment implements PaymentStrategy {
         return pattern.test(email);
       }
 
+      private validateCardNumber(cardNumber: string): void {
+        console.log(cardNumber);
+      }
+
       private validateCvv(cvv: string): boolean {
           const regex = /^[0-9]{3}$/;
           return regex.test(cvv);
       }
 
     public async processPayment(): Promise<string> {
+        this.validateCardNumber(this.cardNumber);
         if (!this.validateEmail(this.email)) {
           return Promise.reject(new Error("Invalid email"));
         }
