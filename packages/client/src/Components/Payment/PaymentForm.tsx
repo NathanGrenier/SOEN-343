@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { PaymentStrategy } from "./PaymentStrategy";
 import { CreditCardPayment } from "./CreditCardPayment";
 import { PayPalPayment } from "./PayPalPayment";
+import { useLocation } from 'react-router-dom';
 
 interface Address {
     display_name: string;
@@ -11,12 +12,11 @@ interface Address {
     };
 }
 
-// interface PaymentFormProps {
-//   totalPrice: number;
-// }
-
-//const PaymentForm: React.FC<PaymentFormProps> = ({ totalPrice }) => {
 const PaymentForm: React.FC = () => {
+    const location = useLocation();
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const { calculatedCost } = location.state || {}; // Passed from deliver_request
+
     const [paymentType, setPaymentType] = useState<"creditCard" | "paypal">("creditCard");
     const [email, setEmail] = useState("");
     const [name, setName] = useState('');
@@ -107,13 +107,6 @@ const PaymentForm: React.FC = () => {
     try {
       const successMessage = await paymentProcessor.processPayment();
       setMessage(successMessage);
-    } catch (error) {
-      setMessage(error as string);
-    }
-
-    try {
-      const successMessage = await paymentProcessor.processPayment();
-      setMessage(successMessage);
       setIsSuccess(true);
   } catch (error) {
       setMessage((error as Error).message);
@@ -131,11 +124,13 @@ const PaymentForm: React.FC = () => {
         </div>
     );
 }
+console.log("Calculated Cost:", calculatedCost);
 
   return (
     <><h1 className="text-3xl font-bold text-justify justidy-left text-black-600 ms-4 mb-4">Payment Checkout</h1>
     <div className="flex justify-center ml-60">
-         <form onSubmit={() => handleSubmit} className="bg-[#d4d4d8] float-left max-w-[400px] h-auto pt-[70px] p-[35px] rounded-[5px] relative">
+         {/*eslint-disable-next-line @typescript-eslint/no-misused-promises*/}
+         <form onSubmit={handleSubmit} className="bg-[#d4d4d8] float-left max-w-[400px] h-auto pt-[70px] p-[35px] rounded-[5px] relative">
              <h2 className="text-xl font-semibold mb-4">Enter Payment Information</h2> 
             <div className="form-group my-3">
                 <label className="block text-sm font-medium text-gray-700 mb-2">Email:</label>
@@ -335,7 +330,7 @@ const PaymentForm: React.FC = () => {
                 <br></br>
                 <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
                 <p className="text-gray-700 text-lg">Total Price:</p>
-                {/* <p className="text-2xl font-bold text-green-600">${totalPrice.toFixed(2)}</p> mx-auto my-[80px] */}
+                <p className="text-2xl font-bold text-green-600">${calculatedCost}</p>
             </div>
     </div>
     </>
