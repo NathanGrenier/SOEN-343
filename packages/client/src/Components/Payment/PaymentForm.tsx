@@ -330,7 +330,7 @@ console.log("Calculated Cost:", calculatedCost);
                 <br></br>
                 <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
                 <p className="text-gray-700 text-lg">Total Price:</p>
-                <p className="text-2xl font-bold text-green-600">${calculatedCost}</p>
+                <p className="text-2xl font-bold text-green-600">${calculatedCost? calculatedCost : "0.00"}</p>
             </div>
     </div>
     </>
