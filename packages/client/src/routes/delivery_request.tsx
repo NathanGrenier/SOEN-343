@@ -60,7 +60,7 @@ const Delivery: React.FC = () => {
 
     // Send data to the backend
     try {
-      const response = await axios.post('/api/packages', { packages: packageData });
+      const response = await axios.post<{ id: number }>('/api/packages', { packages: packageData });
       const { id } = response.data; // Retrieve the ID from the response
       console.log('Package created:', response.data);
       console.log(id);
