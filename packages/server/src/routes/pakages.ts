@@ -7,15 +7,35 @@ const router = Router();
 router
 .post('/', async (req, res) => {
     const {packages} = req.body
+    const query = `
+            INSERT INTO Packages (
+                dropOffName, dropOffLastName, dropOffAddress, dropOffDate,
+                pickUpName, pickUpLastName, pickUpAddress, pickUpDate,
+                amount, email, status
+            ) VALUES (
+                '${packages.dropOffName}',          
+                '${packages.dropOffLastName}',      
+                '${packages.dropOffAddress}',      
+                '${packages.dropOffDate}',                 
+                '${packages.pickUpName}',          
+                '${packages.pickUpLastName}',      
+                '${packages.pickUpAddress}',        
+                '${packages.pickUpDate}',                    
+                ${packages.amount},                 
+                '${packages.email}',                
+                '${packages.status}'                
+            );
+            SELECT SCOPE_IDENTITY() AS LatestID;
+        `;
     try {
-        const results = await pool.query(
-            `INSERT INTO Packages (dropOffName, dropOffLastName, dropOffAddress, dropOffDate, pickUpName, pickUpLastName, pickUpAddress, pickUpDate, amount, email)` +
-             `VALUES(${packages.dropOffName}, ${packages.dropOffLastName}, ${packages.dropOffAddress}, ${packages.dropOffDate}, ${packages.pickUpName}, ${packages.pickUpLastName}, ${packages.pickUpAddress}, ${packages.pickUpDate}, ${packages.amount}, ${packages.email})`);
-        res.status(200).json(results.recordset[0]);
+        const results = await pool.query(query);
+        res.status(200).json({ message: 'Package successfully inserted', 
+            id: results.recordset[0].LatestID
+        });
         
     }catch(err) {
         console.error('Error fetching data:', err);
-        res.status(500).json({error: 'Internal Server Error'});
+        res.status(500).json({error: 'Internal Server Error' + query});
     }
 })
 

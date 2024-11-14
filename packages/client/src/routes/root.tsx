@@ -6,6 +6,7 @@ import MainContent from "../Components/MainContent";
 import Footer from "../Components/Footer";
 
 const App: React.FC = () => {
+
   return (
     <div>
       <Navbar />
