@@ -74,7 +74,11 @@ const AdminPage: React.FC = () => {
           />
           <button
             className="px-6 py-2 bg-custom-blueishGray text-white font-semibold rounded-lg hover:bg-custom-mainGreen"
-            onClick={searchPackage}
+            onClick={() => {
+                void (async () => {
+                  await searchPackage();
+                })();
+              }}
           >
             Find Package
           </button>
@@ -97,18 +101,26 @@ const AdminPage: React.FC = () => {
             <p><strong>Status:</strong> {packageInfo.status}</p>
 
             <div className="flex justify-around mt-4">
-              <button
+            <button
                 className="px-4 py-2 bg-custom-blueishGray mr-3 text-white font-semibold rounded-lg hover:bg-custom-mainGreen"
-                onClick={() => updateStatus("shipped", packageInfo.id )}
-              >
+                onClick={() => {
+                    void (async () => {
+                    await updateStatus("shipped", packageInfo.id);
+                    })();
+                }}
+                >
                 Mark as Shipped
-              </button>
+                </button>
               <button
                 className="px-4 py-2 bg-custom-blueishGray ml-3 text-white font-semibold rounded-lg hover:bg-custom-mainGreen"
-                onClick={() => updateStatus("delivered", packageInfo.id)}
-              >
+                onClick={() => {
+                    void (async () => {
+                    await updateStatus("delivered", packageInfo.id);
+                    })();
+                }}
+                >
                 Mark as Delivered
-              </button>
+                </button>
             </div>
           </div>
         )}

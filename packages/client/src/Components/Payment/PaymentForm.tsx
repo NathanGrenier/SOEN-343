@@ -322,10 +322,17 @@ console.log("Calculated Cost:", calculatedCost);
                 </div>
             </div>
         <br></br>
-            <button type = "submit" 
-            onClick={() => sendEmail()}
-            className="w-full py-2 bg-blue-500 text-white font-semibold rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition">
-             Submit Payment </button>
+        <button
+            type="submit"
+            onClick={() => {
+              void (async () => {
+                await sendEmail();
+              })();
+            }}
+            className="w-full py-2 bg-blue-500 text-white font-semibold rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition"
+          >
+            Submit Payment
+          </button>
              <button type = "reset" className="w-full py-2 bg-neutral-400 text-white font-semibold rounded-md shadow hover:bg-neutral-500 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75 transition my-4">
              Cancel </button>
             
