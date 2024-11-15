@@ -188,12 +188,18 @@ const Quotation: React.FC = () => {
         
 
         <button
-          onClick={calculateShippingCost}
+          onClick={() => {
+            calculateShippingCost().catch((error) => console.error(error));
+          }}
           className="w-full p-3 bg-custom-mainGreen font-bold rounded hover:bg-custom-blueishGray"
         >
           Calculate Cost
         </button>
-
+        {error && (
+        <div className="mt-4 text-red-600 font-semibold">
+          {error}
+        </div>
+      )}
         {cost !== null && (
           <div className="mt-4 p-3 bg-green-100 text-green-800 font-semibold rounded">
             Estimated Shipping Cost: ${cost.toFixed(2)}
