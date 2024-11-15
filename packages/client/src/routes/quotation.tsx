@@ -13,15 +13,12 @@ const Quotation: React.FC = () => {
   const [cost, setCost] = useState<number | null>(null);
   const [address, setAddress] = useState("");
   const [departureAddress, setDepartureAddress] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
   const [selectedShippingMethod, setSelectedShippingMethod] = useState(getShippingMethods()[0].getName());
   const [error, setError] = useState<string | null>(null); // Error state
   const shippingMethods = getShippingMethods();
   const calculateShippingCost = async () => {
     // Check if any required field is empty
-    if (!firstName || !lastName || !email || !departureAddress || !address || !selectedShippingMethod || weight <= 0) {
+    if ( !departureAddress || !address || !selectedShippingMethod || weight <= 0) {
       setError("Please fill in all the information.");
       return;
     }
