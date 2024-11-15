@@ -9,6 +9,7 @@ import healthRouter from "./health.js";
 import testDbRouter from "./routes/dbTest.js";
 import dbRouter from "./routes/pakages.js";
 import emailsRouter from "./routes/emails.js"
+import trackPackageRouter from "./routes/trackPackage.js";
 
 const db = null; // Replace with the database singleton
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // app.use(makeAPIPath(""), rootRouter);
+app.use(makeAPIPath("/trackPackage"), trackPackageRouter);
 app.use(makeAPIPath("/health"), healthRouter);
 app.use(makeAPIPath("/testdb"), testDbRouter);
 app.use(makeAPIPath("/"), emailsRouter);
