@@ -1,16 +1,20 @@
 import React, { useState } from "react";
+
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
 import { ShippingCostCalculator } from "../utils/ShippingCostCalculator";
 import { insideCanadaStrategy } from "../utils/insideCanadaStrategy";
 import { outsideCanadaStrategy } from "../utils/outsideCanadaStrategy";
 import { getShippingMethods } from "../utils/ShippingMethods";
+
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 
 
 const Delivery: React.FC = () => {
   const navigate = useNavigate();;
+
   const [destination, setDestination] = useState("inside");
   const [weight, setWeight] = useState(0);
   const [isExpress, setIsExpress] = useState(false);
@@ -199,7 +203,6 @@ const Delivery: React.FC = () => {
           {error}
         </div>
       )}
-
       {cost !== null && (
         <div className="mt-4 p-3 bg-green-100 text-green-800 font-semibold rounded">
           Estimated Shipping Cost: ${cost.toFixed(2)}

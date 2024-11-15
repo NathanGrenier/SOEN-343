@@ -10,6 +10,7 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { name: "Home", path: "/" },
+  { name: "Get a Quote", path: "/quotation" },
   { name: "Shipping", path: "/" },
   { name: "Tracking", path: "/" },
   { name: "Services", path: "/" },
