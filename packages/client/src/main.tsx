@@ -1,6 +1,10 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  redirect,
+  RouterProvider,
+} from "react-router-dom";
 import "./index.css";
 import Root from "./routes/root.tsx";
 import ErrorPage from "./error-page.tsx";
@@ -13,12 +17,17 @@ import Quotation from "./routes/quotation.tsx";
 import Delivery from "./routes/delivery_request.tsx";
 import UpdatePackage from "./routes/update_packages.tsx";
 
+import TrackPackage from "./routes/trackPackage.tsx";
+import PackageStatus from "./routes/packageStatus.tsx";
+import { loader as trackPackageLoader } from "./routes/packageStatus.ts";
+import PackageNotFound from "./routes/PackageNotFound.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
     errorElement: <ErrorPage />,
+    children: [],
   },
   {
     path: "emails",
@@ -48,6 +57,26 @@ const router = createBrowserRouter([
     element: <PaymentForm />,
   },
   {
+    path: "trackPackage",
+    element: <TrackPackage />,
+  },
+  {
+    path: "/trackPackage/:packageId",
+    loader: ({ params }) => {
+      const { packageId } = params;
+      return redirect(`/trackPackage/${packageId}/status`);
+    },
+  },
+  {
+    path: "trackPackage/:packageId/status",
+    element: <PackageStatus />,
+    loader: trackPackageLoader,
+  },
+  {
+    path: "/package-not-found",
+    element: <PackageNotFound />,
+  },
+  {
     path: "update",
     element: <UpdatePackage />,
   },
@@ -56,7 +85,6 @@ const router = createBrowserRouter([
     element: <Test />,
     loader: testLoader,
   },
-  
 ]);
 
 createRoot(document.getElementById("root")!).render(

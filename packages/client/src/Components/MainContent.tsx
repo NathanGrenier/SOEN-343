@@ -22,7 +22,7 @@ export default function MainContent() {
                   Ship Now
                 </button>
               </Link>
-              <Link to="/">
+              <Link to="/trackPackage">
                 <button className="bg-custom-gray text-custom-mainGreen rounded px-4 py-2">
                   Track Now
                 </button>
