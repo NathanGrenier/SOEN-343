@@ -12,7 +12,7 @@ const navItems: NavItem[] = [
   { name: "Home", path: "/" },
   { name: "Get a Quote", path: "/quotation" },
   { name: "Shipping", path: "/" },
-  { name: "Tracking", path: "/" },
+  { name: "Tracking", path: "/trackPackage" },
   { name: "Services", path: "/" },
   { name: "Request Delivery", path: "/request_delivery" },
   { name: "Support", path: "/" },
