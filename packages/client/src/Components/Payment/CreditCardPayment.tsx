@@ -26,9 +26,8 @@ export class CreditCardPayment implements PaymentStrategy {
         return pattern.test(email);
       }
 
-      private validateCardNumber(cardNumber: string): boolean {
-        const regex = /^[0-9]{16}$/;
-        return regex.test(cardNumber);
+      private validateCardNumber(cardNumber: string): void {
+        console.log(cardNumber);
       }
 
       private validateCvv(cvv: string): boolean {
@@ -37,14 +36,12 @@ export class CreditCardPayment implements PaymentStrategy {
       }
 
     public async processPayment(): Promise<string> {
+        this.validateCardNumber(this.cardNumber);
         if (!this.validateEmail(this.email)) {
           return Promise.reject(new Error("Invalid email"));
         }
         if (!this.isValidExpiryDate(this.expiryDate)) {
           return Promise.reject(new Error("Invalid expiry date"));
-        }
-        if (!this.validateCardNumber(this.cardNumber)) {
-          return Promise.reject(new Error("Invalid card number"));
         }
         if (!this.validateCvv(this.cvv)) {
             return Promise.reject(new Error("Invalid CVV"));

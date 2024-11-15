@@ -14,6 +14,7 @@ const navItems: NavItem[] = [
   { name: "Shipping", path: "/" },
   { name: "Tracking", path: "/" },
   { name: "Services", path: "/" },
+  { name: "Request Delivery", path: "/request_delivery" },
   { name: "Support", path: "/" },
   { name: "Review", path: "/reviews" },
   { name: "About", path: "/" },
