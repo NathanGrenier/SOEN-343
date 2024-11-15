@@ -155,7 +155,7 @@ const Quotation: React.FC = () => {
 
         <button
           onClick={calculateShippingCost}
-          className="w-full p-3 bg-custom-mainGreen font-bold rounded hover:bg-custom-gray hover:text-custom-mainGreen"
+          className="w-full p-3 bg-custom-blueishGray font-bold text-white rounded hover:bg-custom-mainGreen"
         >
           Calculate Cost
         </button>

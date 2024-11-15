@@ -193,7 +193,7 @@ const Delivery: React.FC = () => {
         onClick={() => {
           calculateShippingCost().catch((error) => console.error(error)); // Catch any errors to handle promise rejection
         }}
-        className="w-full p-3 bg-custom-mainGreen text-custom-gray font-bold rounded hover:bg-custom-gray hover:text-custom-mainGreen"
+        className="w-full p-3 bg-custom-blueishGray text-white font-bold rounded hover:bg-custom-mainGreen"
       >
         Request
       </button>
