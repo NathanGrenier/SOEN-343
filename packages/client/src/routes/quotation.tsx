@@ -11,19 +11,44 @@ const Quotation: React.FC = () => {
   const [weight, setWeight] = useState(0);
   const [isExpress, setIsExpress] = useState(false);
   const [cost, setCost] = useState<number | null>(null);
-
-  const [selectedShippingMethod, setSelectedShippingMethod] = useState("");
-
-  const calculateShippingCost = () => {
-    const strategy = destination === "inside" ? insideCanadaStrategy : outsideCanadaStrategy;
-    const calculator = new ShippingCostCalculator(strategy);
-    // Find the selected shipping method and get its fee
-    const selectedMethod = shippingMethods.find((method) => method.getName() === selectedShippingMethod);
-    const shippingFee = selectedMethod ? selectedMethod.getFee() : shippingMethods[0].getFee();
-    setCost(calculator.calculate(weight, isExpress, shippingFee));
-  };
-
+  const [address, setAddress] = useState("");
+  const [departureAddress, setDepartureAddress] = useState("");
+  const [selectedShippingMethod, setSelectedShippingMethod] = useState(getShippingMethods()[0].getName());
+  const [error, setError] = useState<string | null>(null); // Error state
   const shippingMethods = getShippingMethods();
+  
+  const calculateShippingCost = () => {
+    try {
+      // Reset cost to null to hide the display
+      setCost(null);
+  
+      // Validation for required fields
+      if (!departureAddress || !address || !selectedShippingMethod || weight <= 0) {
+        setError("Please fill in all the information.");
+        return;
+      }
+  
+      setError(null); // Clear error if all fields are valid
+  
+      // Calculate shipping cost
+      const strategy = destination === "inside" ? insideCanadaStrategy : outsideCanadaStrategy;
+      const calculator = new ShippingCostCalculator(strategy);
+      const selectedMethod = shippingMethods.find((method) => method.getName() === selectedShippingMethod);
+      const shippingFee = selectedMethod ? selectedMethod.getFee() : shippingMethods[0].getFee();
+      const calculatedCost = calculator.calculate(weight, isExpress, shippingFee);
+      setCost(calculatedCost); // Set the calculated cost
+  
+      // Debugging: Log current and shipping dates
+      const currentDate = new Date(Date.now()).toISOString().split("T")[0];
+      const shippingDate = new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString().split("T")[0];
+      console.log(currentDate);
+      console.log(shippingDate);
+    } catch (error) {
+      console.error("An error occurred while calculating shipping cost:", error);
+    }
+  };
+  
+
 
   return (
     <div className="min-h-screen">
@@ -51,7 +76,7 @@ const Quotation: React.FC = () => {
           <span role="img" aria-label="destination" className="text-lg">
             🌍
           </span>
-          <span><strong>Destination:</strong> Ship within Canada for free 0.50$, or send it internationally for only 5$!</span>
+          <span><strong>Destination:</strong> Ship within Canada for 0.50$, or deliver you package to and from international destinations for only 5$!</span>
         </div>
         <div className="flex items-center space-x-2">
           <span role="img" aria-label="weight" className="text-lg">
@@ -106,7 +131,28 @@ const Quotation: React.FC = () => {
 
       {/* Form for Cost Calculation */}
       <div className="mb-4">
-        <label className="block text-lg font-semibold">Destination:</label>
+        <label className="block text-lg font-semibold">Departure Address:</label>
+        <input
+          type="text"
+          value={departureAddress}
+          onChange={(e) => setDepartureAddress(e.target.value)}
+          className="w-full p-2 mt-2 border rounded"
+          placeholder="Enter departure address"
+        />
+      </div>
+
+      <div className="mb-4">
+        <label className="block text-lg font-semibold">Destination Address:</label>
+        <input
+          type="text"
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+          className="w-full p-2 mt-2 border rounded"
+          placeholder="Enter delivery address"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block text-lg font-semibold">Destination Country:</label>
         <select
           value={destination}
           onChange={(e) => setDestination(e.target.value)}
@@ -153,12 +199,18 @@ const Quotation: React.FC = () => {
         
 
         <button
-          onClick={calculateShippingCost}
+          onClick={() => {
+            calculateShippingCost();
+          }}
           className="w-full p-3 bg-custom-mainGreen font-bold rounded hover:bg-custom-blueishGray"
         >
           Calculate Cost
         </button>
-
+        {error && (
+        <div className="mt-4 text-red-600 font-semibold">
+          {error}
+        </div>
+      )}
         {cost !== null && (
           <div className="mt-4 p-3 bg-green-100 text-green-800 font-semibold rounded">
             Estimated Shipping Cost: ${cost.toFixed(2)}
