@@ -4,6 +4,9 @@ import { insideCanadaStrategy } from "../utils/insideCanadaStrategy";
 import { outsideCanadaStrategy } from "../utils/outsideCanadaStrategy";
 import { getShippingMethods } from "../utils/ShippingMethods";
 
+import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
+
 const Quotation: React.FC = () => {
   const [destination, setDestination] = useState("inside");
   const [weight, setWeight] = useState(0);
@@ -25,6 +28,7 @@ const Quotation: React.FC = () => {
 
   return (
     <>
+    <Navbar />
       <header
         className="relative w-full h-64 bg-cover bg-center"
         style={{
@@ -151,7 +155,7 @@ const Quotation: React.FC = () => {
 
         <button
           onClick={calculateShippingCost}
-          className="w-full p-3 bg-custom-mainGreen font-bold rounded hover:bg-blue-700"
+          className="w-full p-3 bg-custom-mainGreen font-bold rounded hover:bg-custom-gray hover:text-custom-mainGreen"
         >
           Calculate Cost
         </button>
@@ -162,6 +166,7 @@ const Quotation: React.FC = () => {
           </div>
         )}
       </div>
+      <Footer />
     </>
   );
 };
