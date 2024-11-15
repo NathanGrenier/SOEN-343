@@ -57,6 +57,16 @@ const router = createBrowserRouter([
     element: <PaymentForm />,
   },
   {
+    path: "update",
+    element: <UpdatePackage />,
+  },
+  {
+    path: "test",
+    element: <Test />,
+    loader: testLoader,
+  },
+  
+  {
     path: "trackPackage",
     element: <TrackPackage />,
   },
@@ -75,15 +85,6 @@ const router = createBrowserRouter([
   {
     path: "/package-not-found",
     element: <PackageNotFound />,
-  },
-  {
-    path: "update",
-    element: <UpdatePackage />,
-  },
-  {
-    path: "test",
-    element: <Test />,
-    loader: testLoader,
   },
 ]);
 

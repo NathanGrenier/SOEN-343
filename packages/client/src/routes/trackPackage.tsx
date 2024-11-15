@@ -1,3 +1,6 @@
+import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
+
 export default function TrackPackage() {
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
@@ -12,8 +15,10 @@ export default function TrackPackage() {
   };
 
   return (
+    <>
+    <Navbar/>
     <div className="flex flex-col justify-center items-center h-screen bg-gray-100 p-4">
-      <h1 className="text-5xl font-bold mb-10 text-blue-600">Track Your Package</h1>
+      <h1 className="text-5xl font-bold mb-10 text-custom-mainGreen">Track Your Package</h1>
       <p className="mb-6 text-xl text-gray-700 text-center">
         Please enter your package's tracking number to view its status.
       </p>
@@ -28,11 +33,13 @@ export default function TrackPackage() {
         />
         <button
           onClick={handleClick}
-          className="bg-blue-500 text-white p-4 rounded w-full sm:w-auto text-lg font-semibold hover:bg-blue-600"
+          className="bg-custom-blueishGray text-white p-4 rounded w-full sm:w-auto text-lg font-semibold hover:bg-custom-mainGreen"
         >
           Track
         </button>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }
