@@ -7,7 +7,6 @@ import ErrorPage from "./error-page.tsx";
 import Test from "./routes/test.tsx";
 import { loader as testLoader, action as testAction } from "./routes/test.ts";
 import Email from "./routes/emailsTemplate.tsx";
-import Quotation from "./routes/quotation.tsx";
 import Reviews from "./routes/reviews.tsx";
 import PaymentForm from "./routes/payment.tsx";
 import Quotation from "./routes/quotation.tsx";
