@@ -11,19 +11,36 @@ const Quotation: React.FC = () => {
   const [weight, setWeight] = useState(0);
   const [isExpress, setIsExpress] = useState(false);
   const [cost, setCost] = useState<number | null>(null);
+  const [address, setAddress] = useState("");
+  const [departureAddress, setDepartureAddress] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [selectedShippingMethod, setSelectedShippingMethod] = useState(getShippingMethods()[0].getName());
+  const [error, setError] = useState<string | null>(null); // Error state
+  const shippingMethods = getShippingMethods();
+  const calculateShippingCost = async () => {
+    // Check if any required field is empty
+    if (!firstName || !lastName || !email || !departureAddress || !address || !selectedShippingMethod || weight <= 0) {
+      setError("Please fill in all the information.");
+      return;
+    }
+    setError(null); // Clear error if all fields are filled
 
-  const [selectedShippingMethod, setSelectedShippingMethod] = useState("");
-
-  const calculateShippingCost = () => {
+    // Calculate shipping cost
+    
     const strategy = destination === "inside" ? insideCanadaStrategy : outsideCanadaStrategy;
     const calculator = new ShippingCostCalculator(strategy);
-    // Find the selected shipping method and get its fee
     const selectedMethod = shippingMethods.find((method) => method.getName() === selectedShippingMethod);
     const shippingFee = selectedMethod ? selectedMethod.getFee() : shippingMethods[0].getFee();
-    setCost(calculator.calculate(weight, isExpress, shippingFee));
-  };
+    const calculatedCost = calculator.calculate(weight, isExpress, shippingFee);
+    setCost(calculatedCost);
+    const currentDate = new Date(Date.now()).toISOString().split("T")[0];
+    const shippingDate = new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString().split("T")[0];
+    console.log(currentDate);
+    console.log(shippingDate);
+  }
 
-  const shippingMethods = getShippingMethods();
 
   return (
     <div className="min-h-screen">
@@ -51,7 +68,7 @@ const Quotation: React.FC = () => {
           <span role="img" aria-label="destination" className="text-lg">
             🌍
           </span>
-          <span><strong>Destination:</strong> Ship within Canada for free 0.50$, or send it internationally for only 5$!</span>
+          <span><strong>Destination:</strong> Ship within Canada for 0.50$, or deliver you package to and from international destinations for only 5$!</span>
         </div>
         <div className="flex items-center space-x-2">
           <span role="img" aria-label="weight" className="text-lg">
@@ -106,7 +123,28 @@ const Quotation: React.FC = () => {
 
       {/* Form for Cost Calculation */}
       <div className="mb-4">
-        <label className="block text-lg font-semibold">Destination:</label>
+        <label className="block text-lg font-semibold">Departure Address:</label>
+        <input
+          type="text"
+          value={departureAddress}
+          onChange={(e) => setDepartureAddress(e.target.value)}
+          className="w-full p-2 mt-2 border rounded"
+          placeholder="Enter departure address"
+        />
+      </div>
+
+      <div className="mb-4">
+        <label className="block text-lg font-semibold">Destination Address:</label>
+        <input
+          type="text"
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+          className="w-full p-2 mt-2 border rounded"
+          placeholder="Enter delivery address"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block text-lg font-semibold">Destination Country:</label>
         <select
           value={destination}
           onChange={(e) => setDestination(e.target.value)}
