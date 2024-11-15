@@ -16,27 +16,38 @@ const Quotation: React.FC = () => {
   const [selectedShippingMethod, setSelectedShippingMethod] = useState(getShippingMethods()[0].getName());
   const [error, setError] = useState<string | null>(null); // Error state
   const shippingMethods = getShippingMethods();
-  const calculateShippingCost = async () => {
-    // Check if any required field is empty
-    if ( !departureAddress || !address || !selectedShippingMethod || weight <= 0) {
-      setError("Please fill in all the information.");
-      return;
+  
+  const calculateShippingCost = () => {
+    try {
+      // Reset cost to null to hide the display
+      setCost(null);
+  
+      // Validation for required fields
+      if (!departureAddress || !address || !selectedShippingMethod || weight <= 0) {
+        setError("Please fill in all the information.");
+        return;
+      }
+  
+      setError(null); // Clear error if all fields are valid
+  
+      // Calculate shipping cost
+      const strategy = destination === "inside" ? insideCanadaStrategy : outsideCanadaStrategy;
+      const calculator = new ShippingCostCalculator(strategy);
+      const selectedMethod = shippingMethods.find((method) => method.getName() === selectedShippingMethod);
+      const shippingFee = selectedMethod ? selectedMethod.getFee() : shippingMethods[0].getFee();
+      const calculatedCost = calculator.calculate(weight, isExpress, shippingFee);
+      setCost(calculatedCost); // Set the calculated cost
+  
+      // Debugging: Log current and shipping dates
+      const currentDate = new Date(Date.now()).toISOString().split("T")[0];
+      const shippingDate = new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString().split("T")[0];
+      console.log(currentDate);
+      console.log(shippingDate);
+    } catch (error) {
+      console.error("An error occurred while calculating shipping cost:", error);
     }
-    setError(null); // Clear error if all fields are filled
-
-    // Calculate shipping cost
-    
-    const strategy = destination === "inside" ? insideCanadaStrategy : outsideCanadaStrategy;
-    const calculator = new ShippingCostCalculator(strategy);
-    const selectedMethod = shippingMethods.find((method) => method.getName() === selectedShippingMethod);
-    const shippingFee = selectedMethod ? selectedMethod.getFee() : shippingMethods[0].getFee();
-    const calculatedCost = calculator.calculate(weight, isExpress, shippingFee);
-    setCost(calculatedCost);
-    const currentDate = new Date(Date.now()).toISOString().split("T")[0];
-    const shippingDate = new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString().split("T")[0];
-    console.log(currentDate);
-    console.log(shippingDate);
-  }
+  };
+  
 
 
   return (
@@ -189,7 +200,7 @@ const Quotation: React.FC = () => {
 
         <button
           onClick={() => {
-            calculateShippingCost().catch((error) => console.error(error));
+            calculateShippingCost();
           }}
           className="w-full p-3 bg-custom-mainGreen font-bold rounded hover:bg-custom-blueishGray"
         >
