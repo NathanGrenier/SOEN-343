@@ -22,10 +22,3 @@ jobs:
         run: npm run build
       - name: Test
         run: npm run test
-      - name: Build Docker image
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: Dockerfile.prod
-          tags: ghcr.io/nathangrenier/soen-343:test
-          push: false

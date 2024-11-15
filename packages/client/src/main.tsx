@@ -1,6 +1,10 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { createBrowserRouter, redirect, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  redirect,
+  RouterProvider,
+} from "react-router-dom";
 import "./index.css";
 import Root from "./routes/root.tsx";
 import ErrorPage from "./error-page.tsx";
@@ -11,6 +15,7 @@ import Reviews from "./routes/reviews.tsx";
 import PaymentForm from "./routes/payment.tsx";
 import Quotation from "./routes/quotation.tsx";
 import Delivery from "./routes/delivery_request.tsx";
+import UpdatePackage from "./routes/update_packages.tsx";
 
 import TrackPackage from "./routes/trackPackage.tsx";
 import PackageStatus from "./routes/packageStatus.tsx";
@@ -50,17 +55,6 @@ const router = createBrowserRouter([
   {
     path: "payment",
     element: <PaymentForm />,
-    children: [
-      {
-        path: "test",
-        element: <Test />,
-        loader: testLoader,
-      },
-      {
-        path: "quotation",
-        element: <Quotation />,
-      },
-    ],
   },
   {
     path: "trackPackage",
@@ -81,6 +75,15 @@ const router = createBrowserRouter([
   {
     path: "/package-not-found",
     element: <PackageNotFound />,
+  },
+  {
+    path: "update",
+    element: <UpdatePackage />,
+  },
+  {
+    path: "test",
+    element: <Test />,
+    loader: testLoader,
   },
 ]);
 

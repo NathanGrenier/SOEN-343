@@ -17,7 +17,7 @@ export default function MainContent() {
               Experience the fastest most reliable delivery service worldwide
             </p>
             <div className="absolute inset-x-0 mt-[170px] flex items-center justify-center space-x-4">
-              <Link to="/">
+              <Link to="/quotation">
                 <button className="bg-custom-mainGreen text-custom-gray rounded px-4 py-2">
                   Ship Now
                 </button>
@@ -51,7 +51,7 @@ export default function MainContent() {
             their destination quickly and securely, every time.
           </p>
           <br />
-          <Link to="/">
+          <Link to="/request_delivery">
             <button className="bg-custom-mainGreen text-custom-gray rounded px-4 py-2">
               Get Started
             </button>
