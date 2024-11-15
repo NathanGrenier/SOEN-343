@@ -51,6 +51,21 @@ router
     }
 })
 
+.put('/:id/:status', async (req, res) =>{
+    const { id, status } = req.params;
+    console.log(status);
+    try {
+        const query = `UPDATE Packages SET status = '${status}' WHERE id = ${id}`;
+        await pool.query(query);
+
+        res.status(200).json({ message: 'Package successfully updated'});
+
+    }catch(err) {
+        console.error('Error fetching data:', err);
+        res.status(500).json({error: 'Internal Server Error'});
+    }
+})
+
 .get('/amount/:id', async (req, res) =>{
     const id = req.params.id;
     try {
