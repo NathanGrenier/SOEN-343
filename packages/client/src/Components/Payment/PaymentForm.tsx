@@ -3,6 +3,7 @@ import { PaymentStrategy } from "./PaymentStrategy";
 import { CreditCardPayment } from "./CreditCardPayment";
 import { PayPalPayment } from "./PayPalPayment";
 import { useLocation } from 'react-router-dom';
+import axios from "axios";
 
 interface Address {
     display_name: string;
@@ -15,7 +16,7 @@ interface Address {
 const PaymentForm: React.FC = () => {
     const location = useLocation();
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const { calculatedCost } = location.state || {}; // Passed from deliver_request
+    const { calculatedCost, id } = location.state || {}; // Passed from deliver_request
 
     const [paymentType, setPaymentType] = useState<"creditCard" | "paypal">("creditCard");
     const [email, setEmail] = useState("");
@@ -124,6 +125,9 @@ const PaymentForm: React.FC = () => {
         </div>
     );
 }
+const sendEmail = async () => {
+  await axios.post(`/api/send-delivery-payment/${id}`);
+};
 console.log("Calculated Cost:", calculatedCost);
 
   return (
@@ -318,9 +322,18 @@ console.log("Calculated Cost:", calculatedCost);
                 </div>
             </div>
         <br></br>
-            <button type = "submit" className="w-full py-2 bg-custom-blueishGray text-white font-semibold rounded-md shadow hover:bg-custom-mainGreen focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition">
-             Submit Payment </button>
-             <button type = "reset" className="w-full py-2 bg-custom-blueishGray text-white font-semibold rounded-md shadow hover:bg-custom-mainGreen focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75 transition my-4">
+        <button
+            type="submit"
+            onClick={() => {
+              void (async () => {
+                await sendEmail();
+              })();
+            }}
+            className="w-full py-2 bg-blue-500 text-white font-semibold rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition"
+          >
+            Submit Payment
+          </button>
+             <button type = "reset" className="w-full py-2 bg-neutral-400 text-white font-semibold rounded-md shadow hover:bg-neutral-500 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75 transition my-4">
              Cancel </button>
             
              {message && <div className="text-red-500 text-xs italic">{message}</div>}

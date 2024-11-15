@@ -3,9 +3,9 @@ import { ShippingCostCalculator } from "../utils/ShippingCostCalculator";
 import { insideCanadaStrategy } from "../utils/insideCanadaStrategy";
 import { outsideCanadaStrategy } from "../utils/outsideCanadaStrategy";
 import { getShippingMethods } from "../utils/ShippingMethods";
-
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
+
 
 const Quotation: React.FC = () => {
   const [destination, setDestination] = useState("inside");
@@ -27,8 +27,8 @@ const Quotation: React.FC = () => {
   const shippingMethods = getShippingMethods();
 
   return (
-    <>
-    <Navbar />
+    <div className="min-h-screen">
+    <Navbar/>
       <header
         className="relative w-full h-64 bg-cover bg-center"
         style={{
@@ -167,7 +167,7 @@ const Quotation: React.FC = () => {
         )}
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 

@@ -11,6 +11,7 @@ import Reviews from "./routes/reviews.tsx";
 import PaymentForm from "./routes/payment.tsx";
 import Quotation from "./routes/quotation.tsx";
 import Delivery from "./routes/delivery_request.tsx";
+import UpdatePackage from "./routes/update_packages.tsx";
 
 import TrackPackage from "./routes/trackPackage.tsx";
 import PackageStatus from "./routes/packageStatus.tsx";
@@ -50,18 +51,17 @@ const router = createBrowserRouter([
   {
     path: "payment",
     element: <PaymentForm />,
-    children: [
-      {
-        path: "test",
-        element: <Test />,
-        loader: testLoader,
-      },
-      {
-        path: "quotation",
-        element: <Quotation />,
-      },
-    ],
   },
+  {
+    path: "update",
+    element: <UpdatePackage />,
+  },
+  {
+    path: "test",
+    element: <Test />,
+    loader: testLoader,
+  },
+  
   {
     path: "trackPackage",
     element: <TrackPackage />,
