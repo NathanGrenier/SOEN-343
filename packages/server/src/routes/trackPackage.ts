@@ -5,6 +5,11 @@ const router = Router();
 
 router.get("/:packageId/status", async (req, res) => {
   const { packageId } = req.params;
+  const packageIdNumber = parseInt(packageId, 10);
+  if (isNaN(packageIdNumber)) {
+    res.status(400).json({ error: "Invalid package ID" });
+    return;
+  }
 
   const sql = `SELECT pickUpAddress, pickUpDate, dropOffAddress, dropOffDate, status FROM Packages WHERE id = ${packageId};`;
   try {

@@ -7,7 +7,6 @@ interface NavItem {
   dropdownItems?: NavItem[];
 }
 
-
 const navItems: NavItem[] = [
   { name: "Home", path: "/" },
   { name: "Get a Quote", path: "/quotation" },
@@ -31,11 +30,16 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 z-10 flex w-full items-center justify-between bg-white p-4">
       <div className="flex items-center">
-        <img src={"../../public/assets/images/logo.png"} alt="Logo" className="mr-4 h-10 w-auto" />
+        <a href="/">
+          <img
+            src={"../../public/assets/images/logo.png"}
+            alt="Logo"
+            className="mr-4 h-10 w-auto"
+          />
+        </a>
         <button
           className="text-black focus:outline-none md:hidden"
-          onClick={toggleMobileMenu}
-        >
+          onClick={toggleMobileMenu}>
           {isMobileMenuOpen ? "✖" : "☰"}
         </button>
       </div>
@@ -43,20 +47,17 @@ export default function Navbar() {
       <div
         className={`${
           isMobileMenuOpen ? "flex" : "hidden"
-        } flex-col md:flex md:flex-row md:space-x-4`}
-      >
+        } flex-col md:flex md:flex-row md:space-x-4`}>
         {navItems.map((item) => (
           <div
             className="relative"
             key={item.name}
             onMouseEnter={() => toggleDropdown(item.name)}
             onMouseLeave={() => toggleDropdown(null)}
-            onClick={() => toggleDropdown(item.name)}
-          >
+            onClick={() => toggleDropdown(item.name)}>
             <Link
               to={item.path}
-              className="hover:bg-custom-mainGreen rounded px-4 py-2 text-black"
-            >
+              className="hover:bg-custom-mainGreen rounded px-4 py-2 text-black">
               {item.name}
             </Link>
             {openDropdown === item.name && item.dropdownItems && (
@@ -65,8 +66,7 @@ export default function Navbar() {
                   <li key={dropdownItem.name}>
                     <Link
                       to={dropdownItem.path}
-                      className="hover:bg-custom-mainGreen block px-4 py-2"
-                    >
+                      className="hover:bg-custom-mainGreen block px-4 py-2">
                       {dropdownItem.name}
                     </Link>
                   </li>

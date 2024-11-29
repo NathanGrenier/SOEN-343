@@ -19,7 +19,7 @@ export default function PackageStatus() {
           <div className="flex items-center justify-between">
             <span className="font-semibold text-gray-700">Status:</span>
             <span
-              className={`rounded-full px-3 py-1 text-white ${data.status === "delivered" ? "bg-custom-mainGreen" : "bg-custom-blueishGray"}`}>
+              className={`rounded-full px-3 py-1 text-white ${data.status === "delivered" ? "bg-green-500" : "bg-blue-500"}`}>
                 {data.status.charAt(0).toUpperCase() + data.status.slice(1)}
             </span>
           </div>
@@ -45,7 +45,7 @@ export default function PackageStatus() {
           <div className="space-y-2">
             {/* Example tracking steps */}
             <div className="flex items-center">
-              <div className={`flex h-10 w-10 items-center justify-center rounded-full text-white ${data.pickUpAddress ? "bg-custom-mainGreen" : "bg-custom-blueishGray"}`}>
+              <div className={`flex h-10 w-10 items-center justify-center rounded-full text-white ${data.pickUpAddress ? "bg-green-500" : "bg-blue-500"}`}>
                 1
               </div>
               <div className="ml-4 text-gray-700">
@@ -54,14 +54,14 @@ export default function PackageStatus() {
               {data.pickUpAddress ? <Check className="ml-2"  /> : ""}
             </div>
             <div className="flex items-center">
-              <div className={`flex h-10 w-10 items-center justify-center rounded-full text-white ${data.pickUpDate ? "bg-custom-mainGreen" : "bg-custom-blueishGray"}`}>
+              <div className={`flex h-10 w-10 items-center justify-center rounded-full text-white ${data.pickUpDate ? "bg-green-500" : "bg-blue-500"}`}>
                 2
               </div>
               <div className="ml-4 text-gray-700">Package in transit</div>
               {data.pickUpDate ? <Check className="ml-2"  /> : ""}
             </div>
             <div className="flex items-center">
-              <div className={`flex h-10 w-10 items-center justify-center rounded-full text-white ${data.status === "delivered" ? "bg-custom-mainGreen" : "bg-custom-blueishGray"}`}>
+              <div className={`flex h-10 w-10 items-center justify-center rounded-full text-white ${data.status === "delivered" ? "bg-green-500" : "bg-blue-500"}`}>
                 3
               </div>
               <div className="ml-4 text-gray-700">Package delivered</div>

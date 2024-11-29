@@ -18,7 +18,7 @@ export default function TrackPackage() {
     <>
     <Navbar/>
     <div className="flex flex-col justify-center items-center h-screen bg-gray-100 p-4">
-      <h1 className="text-5xl font-bold mb-10 text-custom-mainGreen">Track Your Package</h1>
+      <h1 className="text-5xl font-bold mb-10 text-green-500">Track Your Package</h1>
       <p className="mb-6 text-xl text-gray-700 text-center">
         Please enter your package's tracking number to view its status.
       </p>

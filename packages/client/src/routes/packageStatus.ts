@@ -19,7 +19,7 @@ export const loader: LoaderFunction = async function loader({ params }) {
         method: "GET",
       },
     );
-    if (response.status === 404) {
+    if (response.status === 404 || response.status === 400) {
       return redirect("/package-not-found");
     }
     const data = (await response.json()) as PackageStatusLoaderData["data"];
