@@ -16,6 +16,8 @@ import PaymentForm from "./routes/payment.tsx";
 import Quotation from "./routes/quotation.tsx";
 import Delivery from "./routes/delivery_request.tsx";
 import UpdatePackage from "./routes/update_packages.tsx";
+import Contact from "./routes/contact.tsx";
+import { action as contactAction } from "./routes/contact.ts";
 
 import TrackPackage from "./routes/trackPackage.tsx";
 import PackageStatus from "./routes/packageStatus.tsx";
@@ -85,6 +87,11 @@ const router = createBrowserRouter([
   {
     path: "/package-not-found",
     element: <PackageNotFound />,
+  },
+  {
+    path: "/contact",
+    element: <Contact />,
+    action: contactAction,
   },
 ]);
 

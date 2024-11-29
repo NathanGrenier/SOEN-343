@@ -64,9 +64,11 @@ export default function Footer() {
             <div>
               <h5 className="font-semibold">Support</h5>
               <ul className="mt-2 space-y-1">
-                <li className="text-custom-gray hover:text-custom-mainGreen">
-                  Contact Us
-                </li>
+                <a href="/contact">
+                  <li className="text-custom-gray hover:text-custom-mainGreen">
+                    Contact Us
+                  </li>
+                </a>
                 <li className="text-custom-gray hover:text-custom-mainGreen">
                   Chat Bot
                 </li>

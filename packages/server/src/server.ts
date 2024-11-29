@@ -8,8 +8,9 @@ import { makeAPIPath } from "./util.js";
 import healthRouter from "./health.js";
 import testDbRouter from "./routes/dbTest.js";
 import dbRouter from "./routes/pakages.js";
-import emailsRouter from "./routes/emails.js"
+import emailsRouter from "./routes/emails.js";
 import trackPackageRouter from "./routes/trackPackage.js";
+import contactRouter from "./routes/contact.js";
 
 const db = null; // Replace with the database singleton
 
@@ -24,6 +25,7 @@ app.use(makeAPIPath("/health"), healthRouter);
 app.use(makeAPIPath("/testdb"), testDbRouter);
 app.use(makeAPIPath("/"), emailsRouter);
 app.use(makeAPIPath("/packages"), dbRouter);
+app.use(makeAPIPath("/contact"), contactRouter);
 
 // Get the directory name using import.meta.url
 const __filename = fileURLToPath(import.meta.url);
