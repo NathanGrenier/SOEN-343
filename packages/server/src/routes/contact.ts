@@ -11,8 +11,8 @@ router.post("/", async (req, res) => {
   const { email, subject, message } = req.body;
   try {
     const { data, error } = await resend.emails.send({
-      from: "swiftsend@christellecharles.agency",
-      to: "nathangrenier01@gmail.com",
+      from: email,
+      to: "swiftsend@christellecharles.agency",
       subject: subject,
       react: ContactEmail({ email, message }),
     });
