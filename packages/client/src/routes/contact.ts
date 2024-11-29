@@ -17,8 +17,8 @@ export const action: ActionFunction = async function action({ request }) {
         },
         body: JSON.stringify(data),
       });
-      if (!postRes.ok) throw postRes;
-      return { ok: true };
+      if (postRes.status == 500) throw postRes;
+      return { ok: postRes.ok };
     }
     default:
       throw new Error(`Unsupported method: ${method}`);
