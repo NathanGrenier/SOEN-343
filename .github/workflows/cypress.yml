@@ -20,10 +20,10 @@ jobs:
           node-version: '16'
 
       - name: Install dependencies
-        run: npm install
+        run: ./install-all.sh
 
       - name: Install Cypress
         run: npm install cypress
 
       - name: Run Cypress tests
-        run: npx cypress run
+        run: npm run cypress::run

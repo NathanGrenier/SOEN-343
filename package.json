@@ -17,7 +17,7 @@
     "migrate:redo": "cd packages/server && npm run migrate:redo",
     "migrate:create": "cd packages/server && npm run migrate:create",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:run": "cypress run --spec \"cypress/e2e/spec.cy.js\""
   },
   "author": "",
   "license": "ISC",
