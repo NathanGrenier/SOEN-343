@@ -26,4 +26,4 @@ jobs:
         run: npm install cypress
 
       - name: Run Cypress tests
-        run: npm run cypress::run
+        run: npm run cypress:run
