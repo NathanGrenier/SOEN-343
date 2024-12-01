@@ -18,13 +18,10 @@ describe('TrackPackage Page', () => {
         // Visit the PackageStatus page
         cy.visit('http://localhost:5173/trackPackage/58/status');
     
-        // Verify the package status is displayed correctly
+        // Verify the package information are displayed correctly
         cy.get('span').contains('Status:').siblings().contains('Shipped');
-    
-        // Verify the estimated delivery date is displayed correctly
         cy.get('span').contains('Estimated Delivery:').siblings().contains('11/28/2024');
     
-        // Verify the drop-off address is displayed correctly
         cy.get('span').contains('Delivery Address:').siblings().contains('234 green st');
     
         // Verify the tracking progress steps are displayed correctly
