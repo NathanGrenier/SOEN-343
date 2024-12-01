@@ -172,6 +172,7 @@ const Quotation: React.FC = () => {
             onChange={(e) => setWeight(parseFloat(e.target.value))}
             className="w-full p-2 mt-2 border rounded"
             min="0"
+            placeholder="Weight"
           />
         </div>
         <div className="mb-4">
